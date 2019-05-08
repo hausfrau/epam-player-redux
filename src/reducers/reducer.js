@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux/index';
+import {combineReducers} from 'redux';
 import tracks from './tracksReducer';
 import currentTrackId from './currentTrackReducer';
 

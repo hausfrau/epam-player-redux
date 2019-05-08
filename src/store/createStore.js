@@ -27,7 +27,7 @@ store.dispatch(addTrack(        {
     duration: "02.20"
 }));
 
-store.dispatch(setCurrentTrackId(12));
+store.dispatch(setCurrentTrackId({id: 12}));
 
 
 unsubscribe();
