@@ -1,4 +1,4 @@
-import { ADD_TRACK } from '../actions/actions';
+import { ADD_TRACK } from '../actions';
 
 const initialState = [
         {

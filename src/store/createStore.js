@@ -1,6 +1,6 @@
 import {createStore} from 'redux';
-import playerApp from '../reducers/reducer';
-import { addTrack, setCurrentTrackId } from '../actions/actions';
+import playerApp from '../reducers';
+import { addTrack, setCurrentTrackId } from '../actions';
 
 let store = createStore(playerApp);
 

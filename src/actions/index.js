@@ -5,6 +5,7 @@ export function addTrack(track) {
     return { type: ADD_TRACK, track};
 }
 
-export function setCurrentTrackId({id}) {
-    return { type: SET_CURRENT_TRACK_ID, id }
-}
+export const setCurrentTrackId = id => ({
+   type: SET_CURRENT_TRACK_ID,
+    id
+})

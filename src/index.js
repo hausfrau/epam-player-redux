@@ -1,31 +1,45 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import {Provider} from 'react-redux';
-import thunk from 'redux-thunk';
-import './index.css';
-import App from './App';
+// import thunk from 'redux-thunk';
+// import './index.css';
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
-import store from './store/createStore';
+import getStore from './store/createStore';
 
 
 
 
 
-function playlist(state = {
-    tracks: [],
-    currentTrackId: 0
-}, action) {
-    if (action.type === 'ADD_TRACK') {
-        console.log(action);
-        return Object.assign({}, state,
-            {tracks: [...state.tracks, action.payload]}
-        );
-    }
-    return state;
-}
+// function playlist(state = {
+//     tracks: [],
+//     currentTrackId: 0
+// }, action) {
+//     if (action.type === 'ADD_TRACK') {
+//         console.log(action);
+//         return Object.assign({}, state,
+//             {tracks: [...state.tracks, action.payload]}
+//         );
+//     }
+//     return state;
+// }
 
+
+
+
+
+let store = getStore;
 
 console.log(store.getState());
+
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+)
+
 //
 // store.subscribe(() => {
 //     console.log('subscribe', store.getState());
