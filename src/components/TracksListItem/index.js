@@ -1,15 +1,8 @@
 import React from "react";
-import './index.css';
+import './TracksListItem.css';
 
-// const TracksListItem = (props) => {
-const TracksListItem = ({ track, onClick }) => {
-    // const track = props.track;
+export default ({track, onClick}) => {
     const {name, duration} = track;
-
-
-    // function onTrackClick(_track) {
-    //     props.setCurrentTrackFromTrackItem(_track.id);
-    // }
 
     return (
         <li
@@ -20,5 +13,3 @@ const TracksListItem = ({ track, onClick }) => {
         </li>
     )
 }
-
-export default TracksListItem;

@@ -1,11 +1,14 @@
-export const ADD_TRACK = 'ADD_TRACK';
-export const SET_CURRENT_TRACK_ID = 'SET_CURRENT_TRACK_ID';
+import {
+    ADD_TRACK,
+    SET_CURRENT_TRACK_ID
+} from '../constants/Page';
 
-export function addTrack(track) {
-    return { type: ADD_TRACK, track};
-}
+export const addTrack = (track) => ({
+    type: ADD_TRACK,
+    payload: track
+});
 
 export const setCurrentTrackId = id => ({
-   type: SET_CURRENT_TRACK_ID,
-    id
-})
+    type: SET_CURRENT_TRACK_ID,
+    payload: id
+});

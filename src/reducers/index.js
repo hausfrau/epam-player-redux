@@ -1,10 +1,8 @@
 import {combineReducers} from 'redux';
-import tracks from './tracksReducer';
-import currentTrackId from './currentTrackReducer';
+import tracksReducer from './tracksReducer';
+import currentTrackReducer from './currentTrackReducer';
 
-const playerApp = combineReducers({
-    tracks,
-    currentTrackId
+export default combineReducers({
+    tracks: tracksReducer,
+    currentTrackId: currentTrackReducer
 });
-
-export default playerApp;

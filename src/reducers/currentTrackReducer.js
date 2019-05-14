@@ -1,9 +1,9 @@
-import { SET_CURRENT_TRACK_ID } from '../actions';
+import {SET_CURRENT_TRACK_ID} from '../constants/Page';
 
 function currentTrackId(state = 0, action) {
     switch (action.type) {
         case SET_CURRENT_TRACK_ID:
-            return action.id;
+            return action.payload;
         default:
             return state;
     }

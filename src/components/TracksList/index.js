@@ -1,19 +1,26 @@
-import React from 'react';
+import React, {Component} from 'react';
 import TracksListItem from '../TracksListItem';
-import './index.css';
+import './TrackList.css';
 
-const TracksList = ({tracks, onClick}) =>
-    (<div>
+export default class TracksList extends Component {
+    onTrackClick(track) {
+        this.props.onTrackClick(track.id);
+    }
+
+    render() {
+        const tracks = this.props.tracks;
+
+        return <div>
             <p>The length of tracks is {tracks.length}</p>
 
             <ul className="tracks-list">
                 {console.log(tracks) || tracks.map(track => (
                     <TracksListItem track={track} key={track.id}
-                                    onClick={onClick}
+                                    onClick={this.onTrackClick.bind(this, track)}
                     />
                 ))}
             </ul>
-        </div>)
+        </div>
+    }
+}
 
-
-export default TracksList;
