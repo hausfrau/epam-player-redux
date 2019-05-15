@@ -1,6 +1,7 @@
 import {
     ADD_TRACK,
-    SET_CURRENT_TRACK_ID
+    SET_CURRENT_TRACK_ID,
+    SHOW_FAVORITES_TRACKS
 } from '../constants/Page';
 
 export const addTrack = (track) => ({
@@ -12,3 +13,8 @@ export const setCurrentTrackId = id => ({
     type: SET_CURRENT_TRACK_ID,
     payload: id
 });
+
+export const setShowFavoritesTracksFilter = favoritesTracks => ({
+    type: SHOW_FAVORITES_TRACKS,
+    payload: favoritesTracks
+})

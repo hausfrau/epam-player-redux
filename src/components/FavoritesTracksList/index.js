@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import TracksListItem from '../TracksListItem';
-import './TrackList.css';
+import FavoritesTracksListItem from '../FavoritesTracksListItem';
 
 export default class TracksList extends Component {
     onTrackClick(track) {
@@ -11,11 +10,9 @@ export default class TracksList extends Component {
         const tracks = this.props.tracks;
 
         return <div>
-            <p className="length-header">The length of tracks is {tracks.length}</p>
-
             <ul className="tracks-list">
                 {console.log(tracks) || tracks.map(track => (
-                    <TracksListItem track={track} key={track.id}
+                    <FavoritesTracksListItem track={track} key={track.id}
                                     onClick={this.onTrackClick.bind(this, track)}
                     />
                 ))}

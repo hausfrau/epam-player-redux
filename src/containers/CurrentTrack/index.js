@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
+import './CurrentTrack.css';
 
 class CurrentTrack extends Component {
     id = console.log('this.props.tracks', this.props.tracks) || this.props.currentTrackId;
@@ -18,7 +19,7 @@ class CurrentTrack extends Component {
         const {name, duration} = console.log('currentTrack', currentTrack) || currentTrack;
 
         return (
-            <div>
+            <div className="current-track">
                 {currentTrackId ? `Current track is ${name} ${duration}` : 'Track is not selected'}
             </div>
         )

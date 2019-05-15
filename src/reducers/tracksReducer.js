@@ -19,7 +19,9 @@ const initialState = [
     {
         id: 4,
         name: 'Track 4',
-        duration: '05.10'
+        duration: '05.10',
+        isFavorite: true
+
     },
     {
         id: 5,
