@@ -1,12 +1,24 @@
-.length-header {
+.Tracks__wrapper  {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Tracks__header {
     margin: 0;
     font-size: 20px;
     font-weight: 700;
 }
 
-.tracks-list {
-    list-style-type: none;
+.Tracks {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
     padding-left: 0;
     margin-bottom: 30px;
+    list-style-type: none;
 }
 

@@ -1,4 +1,48 @@
-.tracks-list-item:hover {
+.Track {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 55px;
+  padding: 10px 10px 10px 19px;
+  box-sizing: border-box;
+}
+
+.Track:hover {
   cursor: pointer;
   text-decoration: underline;
 }
+
+.Track__favorite {
+  background-color: yellow;
+}
+
+.Track__current {
+  background-color: #c4e8ee;
+}
+
+.Track__current-favorite {
+  background-color: #38f7c4;
+}
+
+.Favorite__button {
+  margin-left: 30px;
+  background-color: inherit;
+  border: none;
+}
+
+.Favorite__button:hover {
+  background-color: yellow;
+  cursor: pointer;
+}
+
+.Favorite__image {
+  width: 24px;
+  height: 24px;
+}
+
+/* img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+} */

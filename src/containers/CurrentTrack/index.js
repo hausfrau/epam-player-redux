@@ -3,24 +3,25 @@ import connect from "react-redux/es/connect/connect";
 import './CurrentTrack.css';
 
 class CurrentTrack extends Component {
-    id = console.log('this.props.tracks', this.props.tracks) || this.props.currentTrackId;
+    id = this.props.currentTrackId;
 
-    findTrack = (_id) => console.log('id=', _id) || this.props.tracks.find(track => track.id === _id);
+    findTrack = (_id) => this.props.tracks.find(track => track.id === _id);
 
     render() {
-        const currentTrackId = console.log('this.id', this.id) || this.props.currentTrackId;
+        const currentTrackId = this.props.currentTrackId;
 
         const currentTrack = this.findTrack(currentTrackId) || {
             id: 0,
-            name: "",
-            duration: ""
+            name: '',
+            duration: '',
+            isFavorite: false
         };
 
-        const {name, duration} = console.log('currentTrack', currentTrack) || currentTrack;
+        const {name, duration, isFavorite} = currentTrack;
 
         return (
             <div className="current-track">
-                {currentTrackId ? `Current track is ${name} ${duration}` : 'Track is not selected'}
+                {currentTrackId ? `Current track is ${name} ${duration}${isFavorite ? ' and favorite' : ''}` : 'Track is not selected'}
             </div>
         )
     }

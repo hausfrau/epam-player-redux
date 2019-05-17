@@ -1,20 +1,23 @@
-import {ADD_TRACK} from '../constants/Page';
+import {ADD_TRACK} from '../constants';
 
 const initialState = [
     {
         id: 1,
         name: 'Track 1',
-        duration: '04.20'
+        duration: '04.20',
+        isFavorite: false
     },
     {
         id: 2,
         name: 'Track 2',
-        duration: '02.00'
+        duration: '02.00',
+        isFavorite: false
     },
     {
         id: 3,
         name: 'Track 3',
-        duration: '03.32'
+        duration: '03.32',
+        isFavorite: false
     },
     {
         id: 4,
@@ -26,11 +29,13 @@ const initialState = [
     {
         id: 5,
         name: 'Track 5',
-        duration: '03.48'
+        duration: '03.48',
+        isFavorite: false
     },
 ];
 
 function tracks(state = initialState, action) {
+    console.log(`tracksReducer  state=${state}`);
     switch (action.type) {
         case ADD_TRACK:
             return [
@@ -38,7 +43,8 @@ function tracks(state = initialState, action) {
                 {
                     id: action.payload.id,
                     name: action.payload.name,
-                    duration: action.payload.duration
+                    duration: action.payload.duration,
+                    isFavorite: false
                 }
             ];
         default:

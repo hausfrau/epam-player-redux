@@ -8,7 +8,7 @@ import FavoritesTracks from '../../containers/FavoritesTracks';
 export default () => (
     <div className="App">
         <header className="App-header">
-            <h1>It's a with REDUX player</h1>
+            <h1>It's a with REDUX-1 player</h1>
         </header>
         <div className="tracks-list-wrapper">
             <Tracks/>

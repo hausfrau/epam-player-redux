@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import { SHOW_FAVORITES_TRACKS } from '../../constants/Page';
+import { SHOW_FAVORITES_TRACKS } from '../../constants';
 import FavoritesTracksList from '../../components/FavoritesTracksList';
 
 

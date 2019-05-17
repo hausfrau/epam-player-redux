@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import FavoritesTracksListItem from '../FavoritesTracksListItem';
 
-export default class TracksList extends Component {
+export default class FavoritesTracksList extends Component {
     onTrackClick(track) {
         this.props.onTrackClick(track.id);
     }
