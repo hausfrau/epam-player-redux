@@ -25,18 +25,18 @@
   background-color: #38f7c4;
 }
 
-.Favorite__button {
+.Favorite__toggle-button {
   margin-left: 30px;
   background-color: inherit;
   border: none;
 }
 
-.Favorite__button:hover {
+.Favorite__toggle-button:hover {
   background-color: yellow;
   cursor: pointer;
 }
 
-.Favorite__image {
+.Favorite__toggle-button--image {
   width: 24px;
   height: 24px;
 }

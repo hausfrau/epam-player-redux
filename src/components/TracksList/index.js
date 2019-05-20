@@ -25,7 +25,7 @@ export default class TracksList extends Component {
                         {console.log(tracks) || tracks.map(track => (
                             <TracksListItem track={track} currentTrackId={currentTrackId} key={track.id}
                                     onClick={() => this.onTrackClick(track)}
-                                    onFavoriteButtonClick={(event, id) => this.onFavoriteButtonClick(event, this.props.state.tracks, track.id)}
+                                    onFavoriteButtonClick={(event) => this.onFavoriteButtonClick(event, tracks, track.id)}
                             />
                         ))}
                     </ul>

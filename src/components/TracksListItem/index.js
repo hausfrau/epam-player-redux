@@ -22,13 +22,13 @@ export default ({track, currentTrackId, onClick, onFavoriteButtonClick}) => {
         >
             {name} {duration}
             <button 
-            className="Favorite__button"
+            className="Favorite__toggle-button"
             onClick={onFavoriteButtonClick}
             >
                 {isFavorite ? 
-                    <img className='Favorite__image' src={require("../../images/yellow-star.png")} width="24" height="24" alt="like"/> 
+                    <img className='Favorite__toggle-button--image' src={require("../../images/yellow-star.png")} width="24" height="24" alt="like"/> 
                     : 
-                    <img className='Favorite__image' src={require("../../images/black-star.png")} width="24" height="24" alt="like"/>
+                    <img className='Favorite__toggle-button--image' src={require("../../images/black-star.png")} width="24" height="24" alt="like"/>
                 }
             </button>
         </li>

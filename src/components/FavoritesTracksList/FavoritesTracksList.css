@@ -1,0 +1,15 @@
+.Favorites-tracks__wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.Favorites-tracks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  padding-left: 0;
+  margin-bottom: 30px;
+  list-style-type: none;
+}
