@@ -1,5 +1,5 @@
 .Track__favorite {
-  display: flex;
+display: flex;
 justify-content: space-between;
 align-items: center;
 width: 100%;
@@ -13,18 +13,23 @@ cursor: pointer;
 text-decoration: underline;
 }
 
-.Favorite__delete-button {
-  margin-left: 30px;
+.Favorite-delete-button,
+.Play-button {
   background-color: inherit;
   border: none;
 }
 
-.Favorite__delete-button:hover {
+.Favorite-delete-button:hover,
+.Play-button:hover  {
   background-color: yellow;
   cursor: pointer;
 }
 
-.Favorite__delete-button--image {
+.Play-button {
+  margin-left: auto;
+}
+
+.Favorite-delete-button__image {
   width: 24px;
   height: 24px;
 }

@@ -25,24 +25,24 @@
   background-color: #38f7c4;
 }
 
-.Favorite__toggle-button {
-  margin-left: 30px;
+.Favorite-toggle-button,
+.Play-button {
   background-color: inherit;
   border: none;
 }
 
-.Favorite__toggle-button:hover {
+.Play-button {
+  margin-left: auto;
+}
+
+.Favorite-toggle-button:hover,
+.Play-button:hover {
   background-color: yellow;
   cursor: pointer;
 }
 
-.Favorite__toggle-button--image {
+.Favorite-toggle-button__image,
+.Play-button__image {
   width: 24px;
   height: 24px;
 }
-
-/* img {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-} */

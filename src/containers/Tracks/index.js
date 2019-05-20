@@ -8,7 +8,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    onTrackClick: (id) => console.log('Нажали', id) || dispatch(setCurrentTrackId(id)),
+    // onTrackClick: (id) => console.log('Нажали', id) || dispatch(setCurrentTrackId(id)),
+    onPlayButtonClick: (id) => console.log('Нажали', id) || dispatch(setCurrentTrackId(id)),
     onFavoriteButtonClick: (tracks, id) => console.log(`Добавить в избранное id=${id} tracks=${tracks}`) || 
                             dispatch(toggleFavorite(tracks, id))
 });

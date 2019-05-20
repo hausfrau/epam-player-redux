@@ -19,7 +19,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    onFavoriteTrackClick: (id) => console.log('Нажали в избранных ', id) || dispatch(setCurrentTrackId(id)),
+    // onFavoriteTrackClick: (id) => console.log('Нажали в избранных ', id) || dispatch(setCurrentTrackId(id)),
+    onPlayButtonClick: (id) => console.log('Нажали', id) || dispatch(setCurrentTrackId(id)),
     onDeleleFavoriteButtonClick: (tracks, id) => console.log(`Удалили из избранного id=${id} tracks=${tracks}`) || 
                             dispatch(toggleFavorite(tracks, id))
 });
