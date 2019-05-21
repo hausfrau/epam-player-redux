@@ -7,6 +7,9 @@ import { PLAYING_STATUS_PLAYING, PLAYING_STATUS_PAUSED, PLAYING_STATUS_STOPPED }
 class CurrentTrack extends Component {
     // id = this.props.playingState.currentTrackId;
     // playingStatus = this.props.playingState.playingStatus;
+    // playButton;
+    // pauseButton;
+    // stopButton;
 
     findTrack = (_id) => this.props.tracks.find(track => track.id === _id);
 
@@ -24,7 +27,10 @@ class CurrentTrack extends Component {
     render() {
         const currentTrackId = this.props.playingState.currentTrackId;
         const playingStatus = this.props.playingState.playingStatus;
-        const onPlayButtonClick = this.props.onPlayButtonClick;
+        const onPlayButtonClick = () => {
+            // this.playButton.focus();
+            return this.props.onPlayButtonClick;
+        }
         const onPauseButtonClick = this.props.onPauseButtonClick;
         const onStopButtonClick = this.props.onStopButtonClick;
 
@@ -40,22 +46,25 @@ class CurrentTrack extends Component {
         return (
             <div className="current-track">
                 <button
-                    className="play-button control-button"
+                    className={`play-button control-button${playingStatus === PLAYING_STATUS_PLAYING ? " active" : ""}`}
+                    // ref={(button) => { this.playButton = button }}
                     onClick={onPlayButtonClick}
                 >
-                    <img className='play-button__image' src={require("../../images/play.png")} width="24" height="24" alt="play"/>
+                    <img className="play-button__image" src={require("../../images/play.png")} width="24" height="24" alt="play"/>
                 </button>
                 <button
                     className="pause-button control-button"
+                    // ref={(button) => { this.pauseButton = button }}
                     onClick={onPauseButtonClick}
                 >
-                    <img className='pause-button__image' src={require("../../images/pause.png")} width="24" height="24" alt="pause"/>
+                    <img className="pause-button__image" src={require("../../images/pause.png")} width="24" height="24" alt="pause"/>
                 </button>
                 <button
                     className="stop-button control-button"
+                    // ref={(button) => { this.stopButton = button }}
                     onClick={onStopButtonClick}
                 >
-                    <img className='stop-button__image' src={require("../../images/stop.png")} width="24" height="24" alt="stop"/>
+                    <img className="stop-button__image" src={require("../../images/stop.png")} width="24" height="24" alt="stop"/>
                 </button>
                 <p className="current-track__content">
                     {currentTrackId ? `  ${playingStatus}.  Current track is ${name} [${duration}]${isFavorite ? ' and favorite.' : ''}` : 'Track is not selected.'}

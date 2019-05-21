@@ -10,12 +10,12 @@ export default ({track, currentTrackId, onPlayButtonClick, onFavoriteButtonClick
         <li
             className={`track${
                 (isFavorite && currentTrackId === id) ?
-                    ' track__current-favorite'
+                    " track__current-favorite"
                     :
                     isFavorite ?
-                        ' track__favorite' :
+                        " track__favorite" :
                         currentTrackId === id ?
-                            ' track__current' : ''
+                            " track__current" : ""
                 }`
             }
         >
@@ -24,7 +24,7 @@ export default ({track, currentTrackId, onPlayButtonClick, onFavoriteButtonClick
                 className="play-button"
                 onClick={onPlayButtonClick}
             >
-                <img className='play-button__image' src={require("../../images/play.png")} width="24" height="24"
+                <img className="play-button__image" src={require("../../images/play.png")} width="24" height="24"
                      alt="like"/>
             </button>
             <button
@@ -32,10 +32,10 @@ export default ({track, currentTrackId, onPlayButtonClick, onFavoriteButtonClick
                 onClick={onFavoriteButtonClick}
             >
                 {isFavorite ?
-                    <img className='favorite-toggle-button__image' src={require("../../images/yellow-star.png")}
+                    <img className="favorite-toggle-button__image" src={require("../../images/yellow-star.png")}
                          width="24" height="24" alt="like"/>
                     :
-                    <img className='favorite-toggle-button__image' src={require("../../images/black-star.png")}
+                    <img className="favorite-toggle-button__image" src={require("../../images/black-star.png")}
                          width="24" height="24" alt="like"/>
                 }
             </button>

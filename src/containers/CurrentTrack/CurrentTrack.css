@@ -3,7 +3,8 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    padding: 10px 0;
+    padding: 10px;
+    box-sizing: border-box;
     font-size: 18px;
     font-weight: 700;
     background-color: #c4e8ee;
@@ -19,6 +20,11 @@
     border: none;
 }
 
+.control-button:active,
+.control-button:focus {
+    background-color: #ffdc33;
+}
+
 .control-button.play-button {
     margin-left: 0;
 }
@@ -30,4 +36,9 @@
 .control-button:hover {
     background-color: #ffdc33;
     cursor: pointer;
+}
+
+.active,
+.control-button.play-button.active {
+    background-color: #ffdc33;
 }
