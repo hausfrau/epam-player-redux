@@ -1,11 +1,11 @@
-.App {
+.app {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
 }
 
-.App-header {
+.app__header {
   background-color: #282c34;
   width: 100%;
   min-height: 60px;
@@ -17,7 +17,9 @@
   color: white;
 }
 
-.tracks-list-wrapper {
+.left-side-wrapper {
+  display: flex;
+  flex-direction: column;
   width: 30%;
   margin: 60px;
   padding-top: 10px;

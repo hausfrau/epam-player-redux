@@ -1,26 +1,26 @@
 import React from "react";
 import './FavoriteTracksListItem.css';
 
-export default ({track, onPlayButtonClick, onDeleleFavoriteButtonClick}) => {
+export default ({track, onPlayButtonClick, onDeleteFavoriteButtonClick}) => {
     const {name, duration} = track;
 
     return (
         <li
-            className="Track__favorite"
+            className="track__favorite"
             // onClick={onClick}
         >
             {name} {duration}
             <button 
-            className="Play-button"
+            className="play-button"
             onClick={onPlayButtonClick}
             >
-                <img className='Play-button__image' src={require("../../images/play.png")} width="24" height="24" alt="like"/> 
+                <img className='play-button__image' src={require("../../images/play.png")} width="24" height="24" alt="like"/>
             </button>
             <button 
-            className="Favorite-delete-button"
-            onClick={onDeleleFavoriteButtonClick}
+            className="favorite-delete-button"
+            onClick={onDeleteFavoriteButtonClick}
             >
-                <img className='Favorite-delete-button__image' src={require("../../images/delete.svg")} width="24" height="24" alt="delete"/>
+                <img className='favorite-delete-button__image' src={require("../../images/delete.svg")} width="24" height="24" alt="delete"/>
             </button>
         </li>
     )

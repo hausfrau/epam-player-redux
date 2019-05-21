@@ -9,7 +9,7 @@ export default class TracksList extends Component {
     // }
 
     onPlayButtonClick(track) {
-        console.log(`Сработал onPlayButtonClick current-id=, ${this.props.state.currentTrackId}`);
+        console.log(`Сработал onPlayButtonClick current-id=, ${this.props.playingState.currentTrackId} track.id=${track.id}`);
         this.props.onPlayButtonClick(track.id);        
     }
 
@@ -21,7 +21,7 @@ export default class TracksList extends Component {
 
     render() {
         const tracks = this.props.tracks;
-        const currentTrackId = this.props.state.currentTrackId;
+        const currentTrackId = this.props.playingState.currentTrackId;
 
         return <div className="Tracks__wrapper">
                     <p className="Tracks__header">The length of tracks is {tracks.length}</p>

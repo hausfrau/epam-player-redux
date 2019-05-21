@@ -1,6 +1,33 @@
 .current-track {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
     padding: 10px 0;
     font-size: 18px;
     font-weight: 700;
     background-color: #c4e8ee;
+}
+
+.current-track__content {
+    margin: 0;
+    text-align: left;
+}
+
+.control-button {
+    background-color: inherit;
+    border: none;
+}
+
+.control-button.play-button {
+    margin-left: 0;
+}
+
+.control-button:last-of-type {
+    margin-right: 10px;
+}
+
+.control-button:hover {
+    background-color: #ffdc33;
+    cursor: pointer;
 }

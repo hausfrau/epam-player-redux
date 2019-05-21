@@ -5,6 +5,6 @@ import currentTrackReducer from './currentTrackReducer';
 
 export default combineReducers({
     tracks: tracksReducer,
-    currentTrackId: currentTrackReducer,
+    playingState: currentTrackReducer,
     // tracks: toggleFavoriteReducer
 });

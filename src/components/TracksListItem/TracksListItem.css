@@ -1,4 +1,4 @@
-.Track {
+.track {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,41 +8,41 @@
   box-sizing: border-box;
 }
 
-.Track:hover {
+.track:hover {
   cursor: pointer;
   text-decoration: underline;
 }
 
-.Track__favorite {
-  background-color: yellow;
+.track__favorite {
+  background-color: #ffff00;
 }
 
-.Track__current {
+.track__current {
   background-color: #c4e8ee;
 }
 
-.Track__current-favorite {
+.track__current-favorite {
   background-color: #38f7c4;
 }
 
-.Favorite-toggle-button,
-.Play-button {
+.favorite-toggle-button,
+.play-button {
   background-color: inherit;
   border: none;
 }
 
-.Play-button {
+.play-button {
   margin-left: auto;
 }
 
-.Favorite-toggle-button:hover,
-.Play-button:hover {
-  background-color: yellow;
+.favorite-toggle-button:hover,
+.play-button:hover {
+  background-color: #ffdc33;
   cursor: pointer;
 }
 
-.Favorite-toggle-button__image,
-.Play-button__image {
+.favorite-toggle-button__image,
+.play-button__image {
   width: 24px;
   height: 24px;
 }

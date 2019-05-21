@@ -1,4 +1,4 @@
-.Track__favorite {
+.track__favorite {
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -8,28 +8,28 @@ padding: 10px 10px 10px 19px;
 box-sizing: border-box;
 }
 
-.Track__favorite:hover {
+.track__favorite:hover {
 cursor: pointer;
 text-decoration: underline;
 }
 
-.Favorite-delete-button,
-.Play-button {
+.favorite-delete-button,
+.play-button {
   background-color: inherit;
   border: none;
 }
 
-.Favorite-delete-button:hover,
-.Play-button:hover  {
-  background-color: yellow;
+.favorite-delete-button:hover,
+.play-button:hover  {
+  background-color: #ffdc33;
   cursor: pointer;
 }
 
-.Play-button {
+.play-button {
   margin-left: auto;
 }
 
-.Favorite-delete-button__image {
+.favorite-delete-button__image {
   width: 24px;
   height: 24px;
 }

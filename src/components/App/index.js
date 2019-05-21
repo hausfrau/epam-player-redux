@@ -6,11 +6,11 @@ import AddTrack from '../../containers/AddTrack';
 import FavoritesTracks from '../../containers/FavoritesTracks';
 
 export default () => (
-    <div className="App">
-        <header className="App-header">
+    <div className="app">
+        <header className="app__header">
             <h1>It's a with REDUX-1 player</h1>
         </header>
-        <div className="tracks-list-wrapper">
+        <div className="left-side-wrapper">
             <Tracks/>
             <AddTrack/>
             <CurrentTrack/>
