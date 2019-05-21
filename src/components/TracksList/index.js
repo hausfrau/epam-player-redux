@@ -3,14 +3,9 @@ import TracksListItem from '../TracksListItem';
 import './trackList.css';
 
 export default class TracksList extends Component {
-    onPlayButtonClick(track) {
-        this.props.onPlayButtonClick(track.id);
-    }
+    onPlayButtonClick = (id) => this.props.onPlayButtonClick(id);
 
-    onFavoriteButtonClick(event, tracks, id) {
-        event.stopPropagation();
-        this.props.onFavoriteButtonClick(tracks, id);
-    }
+    onFavoriteButtonClick = (id) => this.props.onFavoriteButtonClick(id);
 
     render() {
         const tracks = this.props.tracks;
@@ -22,8 +17,8 @@ export default class TracksList extends Component {
             <ul className="tracks">
                 {tracks.map(track => (
                     <TracksListItem track={track} currentTrackId={currentTrackId} key={track.id}
-                                    onPlayButtonClick={() => this.onPlayButtonClick(track)}
-                                    onFavoriteButtonClick={(event) => this.onFavoriteButtonClick(event, tracks, track.id)}
+                                    onPlayButtonClick={() => this.onPlayButtonClick(track.id)}
+                                    onFavoriteButtonClick={() => this.onFavoriteButtonClick(track.id)}
                     />
                 ))}
             </ul>

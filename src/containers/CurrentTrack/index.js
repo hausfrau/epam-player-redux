@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
-import {setPlayingState} from "../../actions";
+import {setPlayingStatus} from "../../actions";
 import {PLAYING_STATUS_PLAYING, PLAYING_STATUS_PAUSED, PLAYING_STATUS_STOPPED} from '../../constants';
 import './currentTrack.css';
 
@@ -62,9 +62,9 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => ({
-    onPlayButtonClick: () => dispatch(setPlayingState(PLAYING_STATUS_PLAYING)),
-    onPauseButtonClick: () => dispatch(setPlayingState(PLAYING_STATUS_PAUSED)),
-    onStopButtonClick: () => dispatch(setPlayingState(PLAYING_STATUS_STOPPED))
+    onPlayButtonClick: () => dispatch(setPlayingStatus(PLAYING_STATUS_PLAYING)),
+    onPauseButtonClick: () => dispatch(setPlayingStatus(PLAYING_STATUS_PAUSED)),
+    onStopButtonClick: () => dispatch(setPlayingStatus(PLAYING_STATUS_STOPPED))
 });
 
 export default connect(

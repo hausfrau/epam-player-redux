@@ -1,13 +1,13 @@
-import {SET_CURRENT_TRACK_ID, SET_PLAYING_STATUS, PLAYING_STATUS_STOPPED} from '../constants';
+import {SET_CURRENT_TRACK, SET_PLAYING_STATUS, PLAYING_STATUS_STOPPED} from '../constants';
 
 const initialState = {
     currentTrackId: null,
     playingStatus: PLAYING_STATUS_STOPPED
 };
 
-function currentTrackId(state = initialState, action) {
+function setCurrentTrack(state = initialState, action) {
     switch (action.type) {
-        case SET_CURRENT_TRACK_ID:
+        case SET_CURRENT_TRACK:
             if (state.currentTrackId !== action.payload) {
                 return {
                     ...state,
@@ -28,4 +28,4 @@ function currentTrackId(state = initialState, action) {
     }
 }
 
-export default currentTrackId;
+export default setCurrentTrack;

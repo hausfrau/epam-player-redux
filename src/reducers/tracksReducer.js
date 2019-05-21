@@ -47,7 +47,7 @@ function tracks(state = initialState, action) {
                 }
             ];
         case TOGGLE_FAVORITE:
-            return action.payload.tracks.map(track => (track.id === action.payload.favoriteTrackId) ?
+            return state.map(track => (track.id === action.payload) ?
                 {...track, isFavorite: !track.isFavorite}
                 :
                 track

@@ -3,14 +3,9 @@ import FavoritesTracksListItem from '../FavoritesTracksListItem';
 import './favoritesTracksList.css';
 
 export default class FavoritesTracksList extends Component {
-    onPlayButtonClick(track) {
-        this.props.onPlayButtonClick(track.id);
-    }
+    onPlayButtonClick = id => this.props.onPlayButtonClick(id);
 
-    onDeleteFavoriteButtonClick(event, tracks, id) {
-        event.stopPropagation();
-        this.props.onDeleteFavoriteButtonClick(tracks, id);
-    }
+    onDeleteFavoriteButtonClick = id => this.props.onDeleteFavoriteButtonClick(id);
 
     render() {
         const tracks = this.props.tracks;
@@ -22,8 +17,8 @@ export default class FavoritesTracksList extends Component {
                 {tracks.map(track => (
                     <FavoritesTracksListItem track={track} key={track.id}
                                              currentTrackId={currentTrackId}
-                                             onPlayButtonClick={() => this.onPlayButtonClick(track)}
-                                             onDeleteFavoriteButtonClick={(event) => this.onDeleteFavoriteButtonClick(event, state.tracks, track.id)}
+                                             onPlayButtonClick={() => this.onPlayButtonClick(track.id)}
+                                             onDeleteFavoriteButtonClick={() => this.onDeleteFavoriteButtonClick(track.id)}
                     />
                 ))}
             </ul>
