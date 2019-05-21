@@ -2,7 +2,6 @@ import {
     ADD_TRACK,
     SET_CURRENT_TRACK_ID,
     SET_PLAYING_STATUS,
-    // SHOW_FAVORITES_TRACKS,
     TOGGLE_FAVORITE
 } from '../constants';
 
@@ -11,22 +10,17 @@ export const addTrack = track => ({
     payload: track
 });
 
-export const setCurrentTrackId = currentTrackId => console.log('setCurrentTrackId action', currentTrackId) ||  ({
+export const setCurrentTrackId = currentTrackId => ({
     type: SET_CURRENT_TRACK_ID,
     payload: currentTrackId
 });
 
-export const setPlayingState = playingStatus => console.log('setPlaying state action', playingStatus) || ({
+export const setPlayingState = playingStatus => ({
     type: SET_PLAYING_STATUS,
     payload: playingStatus
 });
 
-// export const setShowFavoritesTracksFilter = favoritesTracks => ({
-//     type: SHOW_FAVORITES_TRACKS,
-//     payload: favoritesTracks
-// });
-
-export const toggleFavorite = (tracks=[], favoriteTrackId) => console.log(`action toggleFavorite tracks=${tracks}, favoriteTrackId=${favoriteTrackId}`) || ({
+export const toggleFavorite = (tracks = [], favoriteTrackId) => ({
     type: TOGGLE_FAVORITE,
-    payload: { tracks, favoriteTrackId }
+    payload: {tracks, favoriteTrackId}
 });

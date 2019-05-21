@@ -1,9 +1,9 @@
 import React from 'react';
 import Tracks from '../../containers/Tracks';
 import CurrentTrack from '../../containers/CurrentTrack';
-import './App.css';
 import AddTrack from '../../containers/AddTrack';
 import FavoritesTracks from '../../containers/FavoritesTracks';
+import './app.css';
 
 export default () => (
     <div className="app">
@@ -15,8 +15,8 @@ export default () => (
             <AddTrack/>
             <CurrentTrack/>
         </div>
-        <div className="favorites-tracks-wrapper">
-            <h2 className="favorites-tracks-header">
+        <div className="favorites-wrapper">
+            <h2>
                 Favorites tracks:
             </h2>
             <FavoritesTracks/>

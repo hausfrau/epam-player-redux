@@ -1,0 +1,35 @@
+.track--favorite {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 65px;
+    padding: 10px 10px 10px 19px;
+    box-sizing: border-box;
+}
+
+.track--favorite:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.button--favorite-delete,
+.button--play {
+    background-color: inherit;
+    border: none;
+}
+
+.button--favorite-delete:hover,
+.button--play:hover {
+    background-color: #ffdc33;
+    cursor: pointer;
+}
+
+.button--play {
+    margin-left: auto;
+}
+
+.button-image--favorite-delete {
+    width: 24px;
+    height: 24px;
+}

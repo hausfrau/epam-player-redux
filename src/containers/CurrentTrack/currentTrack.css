@@ -1,8 +1,9 @@
-.current-track {
+.track--current {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
+    min-height: 65px;
     padding: 10px;
     box-sizing: border-box;
     font-size: 18px;
@@ -10,35 +11,35 @@
     background-color: #c4e8ee;
 }
 
-.current-track__content {
+.track-content {
     margin: 0;
     text-align: left;
 }
 
-.control-button {
+.button--control {
     background-color: inherit;
     border: none;
 }
 
-.control-button:active,
-.control-button:focus {
+.button--control:active,
+.button--control:focus {
     background-color: #ffdc33;
 }
 
-.control-button.play-button {
+.button--control.button--play {
     margin-left: 0;
 }
 
-.control-button:last-of-type {
+.button--control:last-of-type {
     margin-right: 10px;
 }
 
-.control-button:hover {
+.button--control:hover {
     background-color: #ffdc33;
     cursor: pointer;
 }
 
 .active,
-.control-button.play-button.active {
+.button--control.button--play.active {
     background-color: #ffdc33;
 }

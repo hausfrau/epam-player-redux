@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {addTrack} from '../../actions';
-import './AddTrack.css';
+import './addTrack.css';
 
 const AddTrack = ({dispatch}) => {
     let name;
@@ -35,6 +35,6 @@ const AddTrack = ({dispatch}) => {
             </form>
         </div>
     )
-}
+};
 
 export default connect()(AddTrack)

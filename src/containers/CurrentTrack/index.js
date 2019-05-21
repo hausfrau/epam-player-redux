@@ -1,36 +1,16 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
-import './CurrentTrack.css';
 import {setPlayingState} from "../../actions";
-import { PLAYING_STATUS_PLAYING, PLAYING_STATUS_PAUSED, PLAYING_STATUS_STOPPED } from '../../constants';
+import {PLAYING_STATUS_PLAYING, PLAYING_STATUS_PAUSED, PLAYING_STATUS_STOPPED} from '../../constants';
+import './currentTrack.css';
 
 class CurrentTrack extends Component {
-    // id = this.props.playingState.currentTrackId;
-    // playingStatus = this.props.playingState.playingStatus;
-    // playButton;
-    // pauseButton;
-    // stopButton;
-
     findTrack = (_id) => this.props.tracks.find(track => track.id === _id);
-
-
-    // onPlayButtonClick(track) {
-    //     console.log(`Сработал onPlayButtonClick current-id=, ${this.props.playingState.currentTrackId}`);
-    //     this.props.onPlayButtonClick(track.id);
-    // }
-    //
-    // onFavoriteButtonClick(id) {
-    //     console.log(`Сработал onPlayButtonClick current-id=, ${this.props.playingState.currentTrackId}`);
-    //     this.props.onPlayButtonClick(track.id);
-    // }
 
     render() {
         const currentTrackId = this.props.playingState.currentTrackId;
         const playingStatus = this.props.playingState.playingStatus;
-        const onPlayButtonClick = () => {
-            // this.playButton.focus();
-            return this.props.onPlayButtonClick;
-        }
+        const onPlayButtonClick = this.props.onPlayButtonClick;
         const onPauseButtonClick = this.props.onPauseButtonClick;
         const onStopButtonClick = this.props.onStopButtonClick;
 
@@ -44,29 +24,29 @@ class CurrentTrack extends Component {
         const {name, duration, isFavorite} = currentTrack;
 
         return (
-            <div className="current-track">
+            <div className="track--current">
                 <button
-                    className={`play-button control-button${playingStatus === PLAYING_STATUS_PLAYING ? " active" : ""}`}
-                    // ref={(button) => { this.playButton = button }}
+                    className={`button--play button--control${playingStatus === PLAYING_STATUS_PLAYING ? " active" : ""}`}
                     onClick={onPlayButtonClick}
                 >
-                    <img className="play-button__image" src={require("../../images/play.png")} width="24" height="24" alt="play"/>
+                    <img className="button-image--play" src={require("../../images/play.png")} width="24" height="24"
+                         alt="play"/>
                 </button>
                 <button
-                    className="pause-button control-button"
-                    // ref={(button) => { this.pauseButton = button }}
+                    className="button--pause button--control"
                     onClick={onPauseButtonClick}
                 >
-                    <img className="pause-button__image" src={require("../../images/pause.png")} width="24" height="24" alt="pause"/>
+                    <img className="button-image--pause" src={require("../../images/pause.png")} width="24" height="24"
+                         alt="pause"/>
                 </button>
                 <button
-                    className="stop-button control-button"
-                    // ref={(button) => { this.stopButton = button }}
+                    className="button--stop button--control"
                     onClick={onStopButtonClick}
                 >
-                    <img className="stop-button__image" src={require("../../images/stop.png")} width="24" height="24" alt="stop"/>
+                    <img className="button-image--stop" src={require("../../images/stop.png")} width="24" height="24"
+                         alt="stop"/>
                 </button>
-                <p className="current-track__content">
+                <p className="track-content">
                     {currentTrackId ? `  ${playingStatus}.  Current track is ${name} [${duration}]${isFavorite ? ' and favorite.' : ''}` : 'Track is not selected.'}
                 </p>
             </div>
@@ -76,17 +56,15 @@ class CurrentTrack extends Component {
 
 function mapStateToProps(state) {
     return {
-        // currentTrackId: state.playingState.currentTrackId,
         playingState: state.playingState,
         tracks: state.tracks
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    // onTrackClick: (id) => console.log('Нажали', id) || dispatch(setCurrentTrackId(id)),
-    onPlayButtonClick: () => console.log('Play') || dispatch(setPlayingState(PLAYING_STATUS_PLAYING)),
-    onPauseButtonClick: () => console.log('Pause') || dispatch(setPlayingState(PLAYING_STATUS_PAUSED)),
-    onStopButtonClick: () => console.log('Stop') || dispatch(setPlayingState(PLAYING_STATUS_STOPPED))
+    onPlayButtonClick: () => dispatch(setPlayingState(PLAYING_STATUS_PLAYING)),
+    onPauseButtonClick: () => dispatch(setPlayingState(PLAYING_STATUS_PAUSED)),
+    onStopButtonClick: () => dispatch(setPlayingState(PLAYING_STATUS_STOPPED))
 });
 
 export default connect(

@@ -6,8 +6,6 @@ import getStore from './store/createStore';
 
 let store = getStore;
 
-console.log('InitialState', store.getState());
-
 render(
     <Provider store={store}>
         <App/>

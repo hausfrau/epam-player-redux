@@ -1,26 +1,29 @@
 import React from "react";
-import './FavoriteTracksListItem.css';
+import './favoriteTracksListItem.css';
 
-export default ({track, onPlayButtonClick, onDeleteFavoriteButtonClick}) => {
-    const {name, duration} = track;
+export default ({track, currentTrackId, onPlayButtonClick, onDeleteFavoriteButtonClick}) => {
+    const {id, name, duration} = track;
 
     return (
-        <li
-            className="track__favorite"
-            // onClick={onClick}
+        <li className={`track${
+            (currentTrackId === id) ?
+                " track--current-favorite"
+                :
+                " track--favorite"
+            }`}
         >
             {name} {duration}
-            <button 
-            className="play-button"
-            onClick={onPlayButtonClick}
-            >
-                <img className='play-button__image' src={require("../../images/play.png")} width="24" height="24" alt="like"/>
+            <button
+                className="button--play"
+                onClick={onPlayButtonClick}>
+                <img className="button__image--play" src={require("../../images/play.png")} width="24" height="24"
+                     alt="play"/>
             </button>
-            <button 
-            className="favorite-delete-button"
-            onClick={onDeleteFavoriteButtonClick}
-            >
-                <img className='favorite-delete-button__image' src={require("../../images/delete.svg")} width="24" height="24" alt="delete"/>
+            <button
+                className="button--favorite-delete"
+                onClick={onDeleteFavoriteButtonClick}>
+                <img className="button__image--favorite-delete" src={require("../../images/delete.svg")} width="24"
+                     height="24" alt="delete"/>
             </button>
         </li>
     )

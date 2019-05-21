@@ -1,0 +1,48 @@
+.track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 65px;
+    padding: 10px 10px 10px 19px;
+    box-sizing: border-box;
+}
+
+.track:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.track--favorite {
+    background-color: #ffff00;
+}
+
+.track--current {
+    background-color: #c4e8ee;
+}
+
+.track--current-favorite {
+    background-color: #38f7c4;
+}
+
+.button--favorite-toggle,
+.button--play {
+    background-color: inherit;
+    border: none;
+}
+
+.button--play {
+    margin-left: auto;
+}
+
+.button--favorite-toggle:hover,
+.button--play:hover {
+    background-color: #ffdc33;
+    cursor: pointer;
+}
+
+.button-image--favorite-toggle,
+.button-image--play {
+    width: 24px;
+    height: 24px;
+}
