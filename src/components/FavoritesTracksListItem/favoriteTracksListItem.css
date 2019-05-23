@@ -19,8 +19,8 @@
     border: none;
 }
 
-.button--favorite-delete:hover,
-.button--play:hover {
+.button--favorite-delete:not(:disabled):hover,
+.button--play:not(:disabled):hover {
     background-color: #ffdc33;
     cursor: pointer;
 }

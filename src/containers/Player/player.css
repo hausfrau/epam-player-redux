@@ -32,11 +32,15 @@
     margin-left: 0;
 }
 
+.button-play-player.button--play.active {
+    background-color: #ffdc33;
+}
+
 .button--control:last-of-type {
     margin-right: 10px;
 }
 
-.button--control:hover {
+.button--control:not(:disabled):hover {
     background-color: #ffdc33;
     cursor: pointer;
 }
@@ -47,4 +51,12 @@
 
 .playing-status {
     margin-right: 10px;
+}
+
+.button--control:disabled {
+    cursor: default;
+}
+
+.button--control:disabled img {
+    opacity: 0.1;
 }
