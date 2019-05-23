@@ -1,17 +1,18 @@
 import {connect} from 'react-redux';
-import {PLAYING_STATUS_PLAYING} from '../../constants';
+import {PLAYER_FIRST, PLAYER_SECOND, PLAYING_STATUS_PLAYING} from '../../constants';
 import FavoritesTracksList from '../../components/FavoritesTracksList';
-import {setCurrentTrack, setPlayingStatus, toggleFavorite} from '../../actions';
+import {setPlayer, toggleFavorite} from '../../actions';
 
 const getFavoritesTracks = tracks => tracks.filter(track => track.isFavorite);
 
 const mapStateToProps = state => ({
     tracks: getFavoritesTracks(state.tracks),
-    state: state
+    players: state.players
 });
 
 const mapDispatchToProps = dispatch => ({
-    onPlayButtonClick: (id) => dispatch(setCurrentTrack(id)) && dispatch(setPlayingStatus(PLAYING_STATUS_PLAYING)),
+    onFirstPlayButtonClick: (id) => dispatch(setPlayer(PLAYER_FIRST, id, PLAYING_STATUS_PLAYING)),
+    onSecondPlayButtonClick: (id) => dispatch(setPlayer(PLAYER_SECOND, id, PLAYING_STATUS_PLAYING)),
     onDeleteFavoriteButtonClick: (id) => dispatch(toggleFavorite(id))
 });
 

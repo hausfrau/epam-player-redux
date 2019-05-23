@@ -1,21 +1,25 @@
 import React from 'react';
 import Tracks from '../../containers/Tracks';
-import CurrentTrack from '../../containers/CurrentTrack';
+import Player from '../../containers/Player';
 import AddTrack from '../../containers/AddTrack';
 import FavoritesTracks from '../../containers/FavoritesTracks';
+import {PLAYER_FIRST, PLAYER_SECOND} from '../../constants';
 import './app.css';
 
 export default () => (
     <div className="app">
         <header className="app__header">
-            <h1>It's a with REDUX-1 player</h1>
+            <h1>It's a with REDUX player</h1>
         </header>
-        <div className="left-side-wrapper">
+        <div className="players-wrapper">
+            <Player playerId={PLAYER_FIRST}/>
+            <Player playerId={PLAYER_SECOND}/>
+        </div>
+        <div className="tracks-wrapper">
             <Tracks/>
             <AddTrack/>
-            <CurrentTrack/>
         </div>
-        <div className="favorites-wrapper">
+        <div className="tracks-favorites-wrapper">
             <h2>
                 Favorites tracks:
             </h2>

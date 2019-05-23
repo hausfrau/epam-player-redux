@@ -1,26 +1,45 @@
 import React from 'react';
 import './tracksListItem.css';
 
-export default ({track, currentTrackId, onPlayButtonClick, onFavoriteButtonClick}) => {
+export default ({
+                    track,
+                    playerFirstCurrentTrackId,
+                    playerSecondCurrentTrackId,
+                    onClick,
+                    onFirstPlayButtonClick,
+                    onSecondPlayButtonClick,
+                    onFavoriteButtonClick
+                }) => {
     const {id, name, duration, isFavorite} = track;
 
     return (
         <li
             className={`track${
-                (isFavorite && currentTrackId === id) ?
+                (isFavorite && (id === playerFirstCurrentTrackId || id === playerSecondCurrentTrackId)) ?
                     " track--current-favorite"
                     :
                     isFavorite ?
                         " track--favorite" :
-                        currentTrackId === id ?
-                            " track--current" : ""
+                        (id === playerFirstCurrentTrackId || id === playerSecondCurrentTrackId) ?
+                            " track--current"
+                            :
+                            ""
                 }`
             }
+            onClick={onClick}
         >
-            {name} {duration}
+            <p className="track-content">
+                {name} {duration}
+            </p>
             <button
                 className="button--play"
-                onClick={onPlayButtonClick}>
+                onClick={onFirstPlayButtonClick}>
+                <img className="button-image--play" src={require("../../images/play.png")} width="24" height="24"
+                     alt="play"/>
+            </button>
+            <button
+                className="button--play"
+                onClick={onSecondPlayButtonClick}>
                 <img className="button-image--play" src={require("../../images/play.png")} width="24" height="24"
                      alt="play"/>
             </button>

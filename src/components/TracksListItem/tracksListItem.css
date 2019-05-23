@@ -25,14 +25,9 @@
     background-color: #38f7c4;
 }
 
-.button--favorite-toggle,
-.button--play {
+.button--favorite-toggle {
     background-color: inherit;
     border: none;
-}
-
-.button--play {
-    margin-left: auto;
 }
 
 .button--favorite-toggle:hover,

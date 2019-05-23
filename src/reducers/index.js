@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 import tracksReducer from './tracksReducer';
-import currentTrackReducer from './currentTrackReducer';
+import playersReducer from './playersReducer';
 
 export default combineReducers({
     tracks: tracksReducer,
-    playingState: currentTrackReducer,
+    players: playersReducer
 });
