@@ -23,16 +23,22 @@ export default class AlbumsLists extends Component {
 
     render() {
         if (this.props.fetchAlbumsHasError) {
-            return <p>Loading error!</p>
+            return <p className="albums-wrapper">Loading error!</p>
         }
 
         if (this.props.albumsAreLoading) {
-            return <p>Albums are loading...</p>
+            return <p className="albums-wrapper">Albums are loading...</p>
 
         }
 
         const albums = this.props.albums;
-        return <div>{`Альбомы: count=${Object.keys(albums).length}`}
+        return <div className="albums-wrapper">
+            <header className="app__header">
+                <h1>It's albums list</h1>
+                <h2>
+                    {`Count = ${Object.keys(albums).length}`}
+                </h2>
+            </header>
             <ul className="albums">
                 {Object.keys(albums).map(albumId => (
                     <li className='album' key={albums[albumId].id}>
@@ -42,10 +48,6 @@ export default class AlbumsLists extends Component {
                     </li>
                 ))}
             </ul>
-            <button onClick={() => console.log('нажали')
-                // || dispatch(fetchAlbums)
-            }>Get Albums
-            </button>
         </div>
     }
 

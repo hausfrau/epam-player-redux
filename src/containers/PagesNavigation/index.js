@@ -37,9 +37,7 @@ class PagesNavigation extends Component {
     // };
 
     render() {
-        return (
-            <div>
-                <nav>
+        return (<nav>
                     <ul className="navigation">
                         <li>
                             <Link to="/player">
@@ -58,8 +56,7 @@ class PagesNavigation extends Component {
                             </Link>
                         </li>
                     </ul>
-                </nav>
-            </div>);
+                </nav>);
     }
 }
 
