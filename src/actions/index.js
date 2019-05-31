@@ -1,10 +1,28 @@
 import {
+    LOAD_TRACKS,
     ADD_TRACK,
     SET_PLAYING_STATUS,
     SET_PLAYER,
     TOGGLE_FAVORITE,
-    SET_CURRENT_TRACK
+    SET_CURRENT_TRACK,
+    SELECT_ALBUM,
+    SELECT_PHOTO,
+    ALBUMS_ARE_LOADING,
+    FETCH_ALBUMS_HAS_ERROR,
+    FETCH_ALBUMS_SUCCESS,
+    // PHOTOS_ARE_LOADING,
+    // RECEIVE_ALBUMS
 } from '../constants';
+import fetch from 'isomorphic-fetch';
+
+// export const loadTracks = tracks => ({
+//     type: LOAD_TRACKS,
+//     payload: tracks
+// });
+
+export const loadTracks = () => console.log('LOAD_TRACKS') || ({
+    type: LOAD_TRACKS
+});
 
 export const addTrack = track => ({
     type: ADD_TRACK,
@@ -40,3 +58,85 @@ export const toggleFavorite = favoriteTrackId => ({
     type: TOGGLE_FAVORITE,
     payload: favoriteTrackId
 });
+
+export const selectAlbum = (albumId) => console.log('selectAlbum') || ({
+    type: SELECT_ALBUM,
+    payload: albumId
+});
+
+export const selectPhoto = (photoId) => console.log('selectPhoto') || ({
+    type: SELECT_PHOTO,
+    payload: photoId
+});
+
+export const albumsAreLoading = (bool) => console.log(`albumsAreLoading ${bool}`) || ({
+    type: ALBUMS_ARE_LOADING,
+    payload: bool
+});
+
+export const fetchAlbumsHasError = (bool) => console.log('fetchAlbumsHasError') || ({
+    type: FETCH_ALBUMS_HAS_ERROR,
+    payload: bool
+});
+
+// export const requestAlbum = (album) => ({
+//     type: FETCH_ALBUMS_SUCCESS,
+//     payload: album
+// });
+
+// export const requestPhoto = (photo) => ({
+//     type: PHOTOS_ARE_LOADING,
+//     payload: photo
+// });
+
+export const fetchAlbumsSuccess = (albums) => console.log(`fetchAlbumsSuccess ${albums["32"].title}`) || ({
+    type: FETCH_ALBUMS_SUCCESS,
+    payload: albums
+});
+
+export const loadAlbums = () =>
+    (dispatch) => {
+        console.log('вызвали loadalbums');
+        const convertFetchedTracksToStoredFormat = (json) => {
+            const fetchedAlbums = json; //JSON.parse(json);
+            const storedAlbums = {};
+            fetchedAlbums.forEach(album => {
+                const {id, title} = album;
+                // console.log(id, title);
+                storedAlbums[id] = {
+                    id: id,
+                    title: title,
+                    photos: []
+                };
+            });
+            // console.log(`fetchedAlbums1 = ${fetchedAlbums}`);
+            // console.log(`storedAlbums.id=${storedAlbums["32"].title}`);
+            // console.log(`storedAlbums.photos=${storedAlbums["32"].photos}`);
+            // console.log(`storedAlbums.id=${storedAlbums["32"].id}`);
+            return storedAlbums;
+        };
+
+        dispatch(albumsAreLoading(true));
+
+        return fetch('https://jsonplaceholder.typicode.com/albums', {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+            .then(response => {
+                console.log(`response=${response}`);
+
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                dispatch(albumsAreLoading(false));
+
+                return response.json();
+            })
+            .then(data => console.log(`length=${data.length}`) || dispatch(fetchAlbumsSuccess(convertFetchedTracksToStoredFormat(data))))
+            // .then(data => console.log(`length=${data.length}`) || dispatch(fetchAlbumsSuccess(data)))
+            .catch(() => dispatch(fetchAlbumsHasError(true)));
+    };
+
