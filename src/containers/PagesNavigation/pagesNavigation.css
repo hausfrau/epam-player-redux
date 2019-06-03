@@ -3,3 +3,7 @@
     padding: 0;
     list-style: none;
 }
+
+a.active .navigation__button {
+    border: 2px solid red;
+}

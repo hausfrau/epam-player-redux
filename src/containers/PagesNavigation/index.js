@@ -42,7 +42,7 @@ class PagesNavigation extends Component {
                         <li>
                             <Link to="/player">
                                 {/*<button onClick={() => this.onPlayerButtonClick(this.props.state.tracks)}>*/}
-                                <button onClick={this.onPlayerButtonClick}>
+                                <button className="navigation__button" onClick={this.onPlayerButtonClick}>
                                     Player
                                 </button>
                             </Link>
@@ -50,7 +50,7 @@ class PagesNavigation extends Component {
                         <li>
                             <Link to="/albums">
                                 {/*<button onClick={() => this.onAlbumsButtonClick(this.props.state.albums)}>*/}
-                                <button onClick={this.onAlbumsButtonClick}>
+                                <button className="navigation__button" onClick={this.onAlbumsButtonClick}>
                                     Albums
                                 </button>
                             </Link>

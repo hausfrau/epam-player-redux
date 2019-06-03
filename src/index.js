@@ -5,8 +5,18 @@ import {Provider} from 'react-redux';
 // import {syncHistoryWithStore} from 'react-router-redux';
 import App from './components/App';
 import getStore from './store/createStore';
+// import {Route} from "react-router";
+import {BrowserRouter as Router, Route} from "react-router-dom"
+import Player from "./pages/PlayerPage";
+import Albums from "./containers/Albums";
+import Album from "./containers/Album";
 
 const store = getStore;
+const PlayerPage = () => <Player/>;
+
+const AlbumsPage = () => <Albums/>;
+
+const AlbumPage = () => <Album/>;
 // const history = syncHistoryWithStore(hash, store);
 
 render(
@@ -14,8 +24,17 @@ render(
         {/*<Router>*/}
         {/*<Router history={history}>*/}
         {/*    <Route path="/" component={App}/>>*/}
-            <App/>
+        {/*    <App/>*/}
         {/*</Router>*/}
-    </Provider>,
+        {/*<Router history={hashHistory}>*/}
+        <Router>
+            <Route path="/" component={App}/>
+                <Route path='/player' component={PlayerPage}/>
+                <Route exact path='/albums' component={AlbumsPage}/>
+                <Route path='/albums/:albumId' component={AlbumPage}/>
+            {/*</Route>*/}
+        </Router>
+    </Provider>
+    ,
     document.getElementById('root')
 );

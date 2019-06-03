@@ -1,4 +1,4 @@
-import {selectAlbum, loadAlbums} from '../../actions';
+import {selectAlbum, loadAlbumPhotos} from '../../actions';
 import {connect} from 'react-redux';
 import AlbumsLists from "../../components/AlbumsLists";
 
@@ -9,8 +9,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    loadAlbums: () => dispatch(loadAlbums()),
-    onAlbumClick: (id) => dispatch(selectAlbum(id))
+    // loadAlbums: () => dispatch(loadAlbums()),
+    onAlbumClick: (id) => {
+        console.log(`выбрали альбом = ${id}`);
+        dispatch(selectAlbum(id));
+        dispatch(loadAlbumPhotos(id));
+    }
 });
 
 export default connect(

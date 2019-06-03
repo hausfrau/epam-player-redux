@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {loadAlbums, fetchAlbumsSuccess} from '../../actions';
+import {loadAlbums, loadAlbumPhotos, fetchAlbumsSuccess} from '../../actions';
 import fetch from "isomorphic-fetch";
 import {Link} from 'react-router-dom';
 import './albumsList.css';
 
 export default class AlbumsLists extends Component {
+    onAlbumClick = this.props.onAlbumClick;
     // componentDidMount() {
     //     // fetch('https://jsonplaceholder.typicode.com/albums', {
     //     //     method: 'get',
@@ -41,10 +42,10 @@ export default class AlbumsLists extends Component {
             </header>
             <ul className="albums">
                 {Object.keys(albums).map(albumId => (
-                    <li className='album' key={albums[albumId].id}>
+                    <li onClick={() => this.onAlbumClick(albumId)} className='album' key={albums[albumId].id}>
                         <img className="album__image" src="" width="100" height="100"/>
                         {/*id={albums[albumId].id} title={albums[albumId].title} photos={albums[albumId].photos.length}*/}
-                        <Link to='/player'>{albums[albumId].title}</Link>
+                        <Link to={`/albums/${albumId}`}>{albums[albumId].title}</Link>
                     </li>
                 ))}
             </ul>

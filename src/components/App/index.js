@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 // import Tracks from '../../containers/Tracks';
 // import Player from '../../containers/Player';
 import Player from '../../pages/PlayerPage';
@@ -9,23 +9,24 @@ import PagesNavigation from '../../containers/PagesNavigation';
 // import {PLAYER_FIRST, PLAYER_SECOND} from '../../constants';
 // import {Router, Route} from 'react-router';
 // import {BrowserRouter as Router} from "react-router-dom";
-import {BrowserRouter as Router, Route, Link} from "react-router-dom"
+// import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 
 import './app.css';
 
-const PlayerPage = () => <Player/>;
+// const PlayerPage = () => <Player/>;
+//
+// const AlbumsPage = () => <Albums/>;
 
-const AlbumsPage = () => <Albums/>;
+export default class App extends Component {
 
-export default () => (
-    <Router>
-        <div className="app">
+    render() {
+        return <div className="app">
                 {/*<Player/>*/}
                 {/*<Albums/>*/}
                 <PagesNavigation/>
-
-                <Route path='/player' component={PlayerPage}/>
-                <Route path='/albums' component={AlbumsPage}/>
+                {/*{this.props.children}*/}
+                {/*<Route path='/player' component={PlayerPage}/>*/}
+                {/*<Route path='/albums' component={AlbumsPage}/>*/}
                 {/*<Route path={'/player'} component={<Player/>}/>*/}
                 {/*<Route path={'/albums'} component={<Albums/>}/>*/}
                 {/*<header className="app__header">*/}
@@ -47,5 +48,5 @@ export default () => (
                 {/*</div>*/}
                 {/*<Albums/>*/}
             </div>
-    </Router>
-)
+    }
+}

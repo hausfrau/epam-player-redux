@@ -2,15 +2,19 @@ import {combineReducers} from 'redux';
 // import {routerReducer} from 'react-router-redux';
 import tracksReducer from './tracksReducer';
 import playersReducer from './playersReducer';
-import {loadAlbums, fetchAlbumsHasError, albumsAreLoading} from './albumsReducer';
-// import photosReducer from './photosReducer';
+import {setSelectedAlbum, loadAlbums, fetchAlbumsHasError, albumsAreLoading, addPhotoToAlbum} from './albumsReducer';
+import {setSelectedPhoto, loadPhotos, fetchPhotosHasError, photosAreLoading} from './photosReducer';
 
 export default combineReducers({
     // routing: routerReducer,
     tracks: tracksReducer,
     players: playersReducer,
-    albums: loadAlbums,
-    // albums: loadAlbums,
+    selectedAlbumId: setSelectedAlbum,
     fetchAlbumsHasError,
-    albumsAreLoading
+    albumsAreLoading,
+    albums: loadAlbums,
+    selectedPhotoId: setSelectedPhoto,
+    fetchPhotosHasError,
+    photosAreLoading,
+    photos: loadPhotos
 });
