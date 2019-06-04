@@ -10,7 +10,7 @@ import {
     ALBUMS_ARE_LOADING,
     FETCH_ALBUMS_HAS_ERROR,
     FETCH_ALBUMS_SUCCESS,
-    ADD_PHOTO_TO_ALBUM,
+    ADD_PHOTOS_TO_ALBUM,
     PHOTOS_ARE_LOADING,
     FETCH_PHOTOS_HAS_ERROR,
     FETCH_PHOTOS_SUCCESS
@@ -63,7 +63,7 @@ export const toggleFavorite = favoriteTrackId => ({
 
 export const selectAlbum = (albumId) => console.log('selectAlbum') || ({
     type: SELECT_ALBUM,
-    payload: albumId
+    payload: Number(albumId)
 });
 
 export const albumsAreLoading = (bool) => console.log(`albumsAreLoading ${bool}`) || ({
@@ -128,9 +128,9 @@ export const loadAlbums = () =>
             .catch(() => dispatch(fetchAlbumsHasError(true)));
     };
 
-export const addPhotoToAlbum = (albumId, photoId) => ({
-    type: ADD_PHOTO_TO_ALBUM,
-    payload: {albumId, photoId}
+export const addPhotosToAlbum = (albumId, photos) => console.log(`addPhotosToAlbum ${albumId} ${photos}`) || ({
+    type: ADD_PHOTOS_TO_ALBUM,
+    payload: {albumId, photos}
 });
 
 export const selectPhoto = (photoId) => console.log('selectPhoto') || ({
@@ -143,12 +143,12 @@ export const photosAreLoading = (bool) => console.log(`photosAreLoading ${bool}`
     payload: bool
 });
 
-export const fetchPhotosHasError = (bool) => console.log('fetchPhotosHasError') || ({
+export const fetchPhotosHasError = (bool) => console.log(`fetchPhotosHasError ${bool}`) || ({
     type: FETCH_PHOTOS_HAS_ERROR,
     payload: bool
 });
 
-export const fetchPhotosSuccess = (photos) => console.log(`fetchPhotosSuccess ${photos["10"].title}`) || ({
+export const fetchPhotosSuccess = (photos) => ({
     type: FETCH_PHOTOS_SUCCESS,
     payload: photos
 });
@@ -156,28 +156,31 @@ export const fetchPhotosSuccess = (photos) => console.log(`fetchPhotosSuccess ${
 export const loadAlbumPhotos = (albumId) =>
     (dispatch) => {
         console.log('вызвали loadAlbumPhotos', albumId);
-
+        let photos = new Set();
         const convertFetchedPhotosToStoredFormat = (json) => {
             const fetchedPhotos = json; //JSON.parse(json);
             const storedPhotos = {};
             fetchedPhotos.forEach(photo => {
-                const {id, title, url} = photo;
+                const {id = 0, title = '', url = ''} = photo;
                 console.log(id, title, url);
 
                 storedPhotos[id] = {
-                    albumId,
+                    albumId: Number(albumId),
                     id,
                     title,
                     url
                 };
+                photos.add(id);
 
-                dispatch(addPhotoToAlbum(albumId, id));
             });
 
             // console.log(`fetchedAlbums1 = ${fetchedAlbums}`);
             // console.log(`storedAlbums.id=${storedAlbums["32"].title}`);
             // console.log(`storedAlbums.photos=${storedAlbums["32"].photos}`);
             // console.log(`storedAlbums.id=${storedAlbums["32"].id}`);
+            dispatch(addPhotosToAlbum(albumId, Array.from(photos)));
+            console.log('convertFetchedPhotosToStoredFormat addPhotosToAlbum сработалол нормально');
+            console.log(`convertFetchedPhotosToStoredFormat storedPhotos = ${Object.keys(storedPhotos)}`);
             return storedPhotos;
         };
 
@@ -193,7 +196,7 @@ export const loadAlbumPhotos = (albumId) =>
             .then(response => {
                 console.log(`photo response = ${response}`);
                 if (!response.ok) {
-                    console.log(response.statusText);
+                    console.log(`ошибка в loadAlbumPhotos ${response.statusText}`);
                     throw Error(response.statusText);
                 }
 
@@ -204,7 +207,11 @@ export const loadAlbumPhotos = (albumId) =>
             .then(data => {
                 console.log(`photos length=${data.length}`);
                 dispatch(fetchPhotosSuccess(convertFetchedPhotosToStoredFormat(data)));
+                console.log('fetchPhotosSuccess(convertFetchedPhotosToStoredFormat(data)) сработало');
             })
             // .then(data => console.log(`length=${data.length}`) || dispatch(fetchAlbumsSuccess(data)))
-            .catch(() => dispatch(fetchPhotosHasError(true)));
+            .catch((error) => {
+                console.log(`ошибка в loadAlbumPhotos catch ${error}`);
+                dispatch(fetchPhotosHasError(true))
+            });
     };

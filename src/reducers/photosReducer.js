@@ -1,4 +1,5 @@
 import {
+    FETCH_PHOTOS_HAS_ERROR,
     FETCH_PHOTOS_SUCCESS,
     PHOTOS_ARE_LOADING,
     SELECT_PHOTO
@@ -16,10 +17,10 @@ export const setSelectedPhoto = (state = null, action) => {
 export const loadPhotos = (state = [], action) => {
     switch (action.type) {
         case FETCH_PHOTOS_SUCCESS:
-            return console.log(action.payload[10].url) ||  action.payload;
-        // return [...state, {
-        //     [action.payload.id]: getAlbum(state[action.payload.id], action)
-        // }]
+            return {
+                ...state,
+                ...action.payload
+            };
         default:
             return console.log(state) || state;
     }
@@ -36,8 +37,8 @@ export const photosAreLoading = (state = false, action) => {
 
 export const fetchPhotosHasError = (state = false, action) => {
     switch (action.type) {
-        case FETCH_PHOTOS_SUCCESS:
-            return action.payload;
+        case FETCH_PHOTOS_HAS_ERROR:
+            return console.log(`fetchPhotosHasError = ${action.payload}`) || action.payload;
         default:
             return state;
     }

@@ -9,7 +9,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    // loadAlbums: () => dispatch(loadAlbums()),
     onAlbumClick: (id) => {
         console.log(`выбрали альбом = ${id}`);
         dispatch(selectAlbum(id));
