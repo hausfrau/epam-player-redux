@@ -10,15 +10,6 @@ import {loadTracks} from "../../actions";
 
 // export default () =>
 export default class extends Component {
-
-    // componentDidMount() {
-    //     console.log(`Player componentDidMount this.props.albums= ${this.props.tracks}`)
-    //     if (!this.props.tracks) {
-    //         console.log('!this.props.albums');
-    //         this.props.dispatch(loadTracks());
-    //     }
-    // }
-
     render() {
         return <div className="player-page">
             <header className="app__header">

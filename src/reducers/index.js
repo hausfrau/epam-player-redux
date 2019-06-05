@@ -5,11 +5,11 @@ import {setSelectedAlbum, loadAlbums, fetchAlbumsHasError, albumsAreLoading} fro
 import {setSelectedPhoto, loadPhotos, fetchPhotosHasError, photosAreLoading} from './photosReducer';
 
 export default combineReducers({
+    albumsAreLoading,
     tracks: tracksReducer,
     players: playersReducer,
     selectedAlbumId: setSelectedAlbum,
     fetchAlbumsHasError,
-    albumsAreLoading,
     albums: loadAlbums,
     selectedPhotoId: setSelectedPhoto,
     fetchPhotosHasError,

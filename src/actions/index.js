@@ -17,12 +17,7 @@ import {
 } from '../constants';
 import fetch from 'isomorphic-fetch';
 
-// export const loadTracks = tracks => ({
-//     type: LOAD_TRACKS,
-//     payload: tracks
-// });
-
-export const loadTracks = () => console.log('LOAD_TRACKS') || ({
+export const loadTracks = () => ({
     type: LOAD_TRACKS
 });
 
@@ -61,45 +56,39 @@ export const toggleFavorite = favoriteTrackId => ({
     payload: favoriteTrackId
 });
 
-export const selectAlbum = (albumId) => console.log('selectAlbum') || ({
+export const selectAlbum = (albumId) => ({
     type: SELECT_ALBUM,
     payload: Number(albumId)
 });
 
-export const albumsAreLoading = (bool) => console.log(`albumsAreLoading ${bool}`) || ({
+export const albumsAreLoading = (bool) => ({
     type: ALBUMS_ARE_LOADING,
     payload: bool
 });
 
-export const fetchAlbumsHasError = (bool) => console.log('fetchAlbumsHasError') || ({
+export const fetchAlbumsHasError = (bool) => ({
     type: FETCH_ALBUMS_HAS_ERROR,
     payload: bool
 });
 
-export const fetchAlbumsSuccess = (albums) => console.log(`fetchAlbumsSuccess ${albums["32"].title}`) || ({
+export const fetchAlbumsSuccess = (albums) => ({
     type: FETCH_ALBUMS_SUCCESS,
     payload: albums
 });
 
 export const loadAlbums = () =>
     (dispatch) => {
-        console.log('вызвали loadalbums');
         const convertFetchedAlbumsToStoredFormat = (json) => {
-            const fetchedAlbums = json; //JSON.parse(json);
+            const fetchedAlbums = json;
             const storedAlbums = {};
             fetchedAlbums.forEach(album => {
                 const {id, title} = album;
-                // console.log(id, title);
                 storedAlbums[id] = {
                     id: id,
                     title: title,
                     photos: []
                 };
             });
-            // console.log(`fetchedAlbums1 = ${fetchedAlbums}`);
-            // console.log(`storedAlbums.id=${storedAlbums["32"].title}`);
-            // console.log(`storedAlbums.photos=${storedAlbums["32"].photos}`);
-            // console.log(`storedAlbums.id=${storedAlbums["32"].id}`);
             return storedAlbums;
         };
 
@@ -113,37 +102,35 @@ export const loadAlbums = () =>
             }
         })
             .then(response => {
-                console.log(`response=${response}`);
-
                 if (!response.ok) {
-                    console.log(response.statusText);
+                    console.error(response.statusText);
                     throw Error(response.statusText);
                 }
+
                 dispatch(albumsAreLoading(false));
 
                 return response.json();
             })
-            .then(data => console.log(`length=${data.length}`) || dispatch(fetchAlbumsSuccess(convertFetchedAlbumsToStoredFormat(data))))
-            // .then(data => console.log(`length=${data.length}`) || dispatch(fetchAlbumsSuccess(data)))
+            .then(data => dispatch(fetchAlbumsSuccess(convertFetchedAlbumsToStoredFormat(data))))
             .catch(() => dispatch(fetchAlbumsHasError(true)));
     };
 
-export const addPhotosToAlbum = (albumId, photos) => console.log(`addPhotosToAlbum ${albumId} ${photos}`) || ({
+export const addPhotosToAlbum = (albumId, photos) => ({
     type: ADD_PHOTOS_TO_ALBUM,
     payload: {albumId, photos}
 });
 
-export const selectPhoto = (photoId) => console.log('selectPhoto') || ({
+export const selectPhoto = (photoId) => ({
     type: SELECT_PHOTO,
     payload: photoId
 });
 
-export const photosAreLoading = (bool) => console.log(`photosAreLoading ${bool}`) || ({
+export const photosAreLoading = (bool) => ({
     type: PHOTOS_ARE_LOADING,
     payload: bool
 });
 
-export const fetchPhotosHasError = (bool) => console.log(`fetchPhotosHasError ${bool}`) || ({
+export const fetchPhotosHasError = (bool) => ({
     type: FETCH_PHOTOS_HAS_ERROR,
     payload: bool
 });
@@ -155,14 +142,13 @@ export const fetchPhotosSuccess = (photos) => ({
 
 export const loadAlbumPhotos = (albumId) =>
     (dispatch) => {
-        console.log('вызвали loadAlbumPhotos', albumId);
         let photos = new Set();
+
         const convertFetchedPhotosToStoredFormat = (json) => {
-            const fetchedPhotos = json; //JSON.parse(json);
+            const fetchedPhotos = json;
             const storedPhotos = {};
             fetchedPhotos.forEach(photo => {
                 const {id = 0, title = '', url = ''} = photo;
-                console.log(id, title, url);
 
                 storedPhotos[id] = {
                     albumId: Number(albumId),
@@ -170,17 +156,12 @@ export const loadAlbumPhotos = (albumId) =>
                     title,
                     url
                 };
-                photos.add(id);
 
+                photos.add(id);
             });
 
-            // console.log(`fetchedAlbums1 = ${fetchedAlbums}`);
-            // console.log(`storedAlbums.id=${storedAlbums["32"].title}`);
-            // console.log(`storedAlbums.photos=${storedAlbums["32"].photos}`);
-            // console.log(`storedAlbums.id=${storedAlbums["32"].id}`);
             dispatch(addPhotosToAlbum(albumId, Array.from(photos)));
-            console.log('convertFetchedPhotosToStoredFormat addPhotosToAlbum сработалол нормально');
-            console.log(`convertFetchedPhotosToStoredFormat storedPhotos = ${Object.keys(storedPhotos)}`);
+
             return storedPhotos;
         };
 
@@ -194,9 +175,7 @@ export const loadAlbumPhotos = (albumId) =>
             }
         })
             .then(response => {
-                console.log(`photo response = ${response}`);
                 if (!response.ok) {
-                    console.log(`ошибка в loadAlbumPhotos ${response.statusText}`);
                     throw Error(response.statusText);
                 }
 
@@ -205,13 +184,10 @@ export const loadAlbumPhotos = (albumId) =>
                 return response.json();
             })
             .then(data => {
-                console.log(`photos length=${data.length}`);
                 dispatch(fetchPhotosSuccess(convertFetchedPhotosToStoredFormat(data)));
-                console.log('fetchPhotosSuccess(convertFetchedPhotosToStoredFormat(data)) сработало');
             })
-            // .then(data => console.log(`length=${data.length}`) || dispatch(fetchAlbumsSuccess(data)))
             .catch((error) => {
-                console.log(`ошибка в loadAlbumPhotos catch ${error}`);
+                console.error(error);
                 dispatch(fetchPhotosHasError(true))
             });
     };

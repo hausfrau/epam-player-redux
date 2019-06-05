@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import './albumsList.css';
 import {loadAlbums} from "../../actions";
 
@@ -7,9 +7,7 @@ export default class AlbumsLists extends Component {
     onAlbumClick = this.props.onAlbumClick;
 
     componentDidMount() {
-        console.log(`AlbumsLists componentDidMount this.props.albums= ${this.props.albums}`)
-        if (this.props.albums.length === 0) {
-            console.log('!this.props.albums');
+        if (Object.keys(this.props.albums).length === 0 && !this.props.albumsAreLoading) {
             this.props.dispatch(loadAlbums());
         }
     }
@@ -25,6 +23,7 @@ export default class AlbumsLists extends Component {
         }
 
         const albums = this.props.albums;
+
         return <div className="albums-wrapper">
             <header className="app__header">
                 <h1>It's albums list</h1>
@@ -37,9 +36,13 @@ export default class AlbumsLists extends Component {
             </Link>
             <ul className="albums">
                 {Object.keys(albums).map(albumId => (
-                    <li onClick={() => this.onAlbumClick(albumId)} className='album' key={albums[albumId].id}>
-                        <img className="album__image" src="" width="100" height="100"/>
-                        <Link className="link" to={`/albums/${albumId}`}>{albums[albumId].title}</Link>
+                    <li onClick={() => this.onAlbumClick(albumId)} className="album" key={albums[albumId].id}>
+                        <NavLink
+                            className={`link${albums[albumId].id === this.props.selectedAlbumId ? ' active-link' : ''}`}
+                            activeClassName="active-link"
+                            to={`/albums/${albumId}`}>
+                            <img className="album__image" src="" width="100" height="100"/>
+                            {albums[albumId].title}</NavLink>
                     </li>
                 ))}
             </ul>

@@ -34,9 +34,7 @@ const initialState = [
     },
 ];
 
-// function tracks(state = [], action) {
 const tracks = (state = [], action) => {
-    console.log(`tracksReducer ${action.type}`);
     switch (action.type) {
         case LOAD_TRACKS:
             return initialState;

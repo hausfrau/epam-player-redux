@@ -22,7 +22,7 @@ export const loadPhotos = (state = [], action) => {
                 ...action.payload
             };
         default:
-            return console.log(state) || state;
+            return state;
     }
 };
 
@@ -38,7 +38,7 @@ export const photosAreLoading = (state = false, action) => {
 export const fetchPhotosHasError = (state = false, action) => {
     switch (action.type) {
         case FETCH_PHOTOS_HAS_ERROR:
-            return console.log(`fetchPhotosHasError = ${action.payload}`) || action.payload;
+            return action.payload;
         default:
             return state;
     }

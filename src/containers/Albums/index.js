@@ -1,22 +1,19 @@
-// import React from 'react';
-import {selectAlbum, loadAlbumPhotos} from '../../actions';
+import {selectAlbum} from '../../actions';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import AlbumsLists from "../../components/AlbumsLists";
-import Album from '../../containers/Album';
-import {Route} from "react-router-dom";
 
 class Albums extends Component {
     render() {
-        const {onAlbumClick, albums, albumsAreLoading, fetchAlbumsHasError, dispatch} = this.props;
+        const {onAlbumClick, albums, albumsAreLoading, fetchAlbumsHasError, selectedAlbumId, dispatch} = this.props;
         return (
             <div>
-
-                {/*<Route*/}
-                {/*    path={`${match.path}/:albumId`}*/}
-                {/*    component={Album}*/}
-                {/*/>*/}
-                <AlbumsLists onAlbumClick = {onAlbumClick} albums = {albums} albumsAreLoading = {albumsAreLoading} fetchAlbumsHasError = {fetchAlbumsHasError} dispatch = {dispatch}/>
+                <AlbumsLists onAlbumClick={onAlbumClick}
+                             albums={albums}
+                             albumsAreLoading={albumsAreLoading}
+                             fetchAlbumsHasError={fetchAlbumsHasError}
+                             selectedAlbumId={selectedAlbumId}
+                             dispatch={dispatch}/>
             </div>
         );
     };
@@ -25,14 +22,13 @@ class Albums extends Component {
 const mapStateToProps = (state) => ({
     albums: state.albums,
     albumsAreLoading: state.albumsAreLoading,
-    fetchAlbumsHasError : state.fetchAlbumsHasError
+    fetchAlbumsHasError: state.fetchAlbumsHasError,
+    selectedAlbumId: state.selectedAlbumId
 });
 
 const mapDispatchToProps = (dispatch) => ({
     onAlbumClick: (id) => {
-        console.log(`выбрали альбом = ${id}`);
         dispatch(selectAlbum(id));
-        // dispatch(loadAlbumPhotos(id));
     },
     dispatch
 });

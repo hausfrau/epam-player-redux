@@ -1,32 +1,46 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {loadAlbumPhotos} from '../../actions';
-import {Link, Route} from 'react-router-dom';
+import {loadAlbumPhotos, loadAlbums, selectAlbum, selectPhoto} from '../../actions';
+import {Link} from 'react-router-dom';
 import './album.css';
 
 class Album extends Component {
+    selectedAlbumParameter = this.props.match.params.albumId;
+    onPhotoClick = this.props.onPhotoClick;
 
     componentDidMount() {
-        const {albums, albumId, loadAlbumPhotos} = this.props;
-        console.log(`componentDidMount album ${this.props.match.params.albumId}`);
+        let {albums, albumId, loadAlbumPhotos} = this.props;
+
+        if (Object.keys(albums).length === 0) {
+            if (this.selectedAlbumParameter && !albumId) {
+                this.props.dispatch(selectAlbum(this.selectedAlbumParameter));
+                albumId = this.props.albumId;
+            }
+
+            this.props.dispatch(loadAlbums()).then(() => loadAlbumPhotos(this.selectedAlbumParameter));
+        }
 
         if (albums[albumId] && albums[albumId].photos.length === 0) {
-            console.log(`фотки ${albumId} = ${albums[albumId].photos.length}`);
             loadAlbumPhotos(albumId);
         }
     }
 
     render() {
-
         const {match, albums, allPhotos} = this.props;
-        // console.log(`parseInt(match.params.albumId) = ${parseInt(match.params.albumId)} match = ${match} albumId = ${albumId} albums.photos=${albums[albumId].photos.length}`);
         const albumId = match.params ? parseInt(match.params.albumId) : 0;
-
         const findPhoto = (photoId) => allPhotos[photoId];
 
-        if (albumId && albums[albumId]) {
+        if (this.props.state.fetchPhotosHasError) {
+            return <p className="photos-wrapper">Loading error!</p>
+        }
+
+        if (this.props.state.photosAreLoading) {
+            return <p className="photos-wrapper">Photos are loading...</p>
+
+        }
+
+        if (albumId && albums[albumId] && albums[albumId].photos.length !== 0) {
             const photos = albums[albumId].photos;
-            console.log(`Album render albumId=${albumId} photos=${photos}`);
 
             return <div className="photos-wrapper">
                 <header className="app__header">
@@ -41,20 +55,20 @@ class Album extends Component {
                 <ul className="photos">
                     {photos.map(photoId => {
                         const photo = findPhoto(photoId);
-                        console.log(`нашли фото ${photo} все фотки=${Object.keys(allPhotos)}`);
                         if (!photo) {
-                            return <li onClick={() => console.log(photoId)} className='photo' key={photoId}>
-                                <Link to="/" target="_blank">{photoId}</Link>
+                            return <li className='photo' key={photoId}>
+                                {photoId}
                             </li>
                         }
-                        // const photo = findPhoto(photoId);
-                        // console.log(`нашли фото ${photo} все фотки=${Object.keys(allPhotos)}`);
-                        return <li onClick={() => console.log(photoId)} className='photo' key={photo.id}>
-                            <a className="link" href={photo.url} target="_blank">
+
+                        return <li className='photo' key={photo.id}>
+                            <a onClick={() => this.onPhotoClick(photo.id)}
+                               className={`link${photo.id === this.props.state.selectedPhotoId ? ' active-link' : ''}`}
+                               href={photo.url}
+                               target="_blank">
                                 <img className="photo__image" src={photo.url} width="100" height="100"/>
                                 {photo.title}
                             </a>
-                            {/*<Link to={photo.url} target="_blank">{photo.title}</Link>*/}
                         </li>
                     })}
                 </ul>
@@ -63,20 +77,24 @@ class Album extends Component {
 
         return (
             <div>
-                Nothing
+                Photos is not found.
             </div>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
+    state: state,
     albums: state.albums,
     albumId: state.selectedAlbumId,
-    allPhotos: state.photos
+    allPhotos: state.photos,
+    albumsAreLoading: state.albumsAreLoading
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    loadAlbumPhotos: (albumId) => dispatch(loadAlbumPhotos(albumId))
+    loadAlbumPhotos: (albumId) => dispatch(loadAlbumPhotos(albumId)),
+    onPhotoClick: (photoId) => dispatch(selectPhoto(photoId)),
+    dispatch
 });
 
 export default connect(
