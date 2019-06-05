@@ -65,8 +65,9 @@ class Album extends Component {
                             <a onClick={() => this.onPhotoClick(photo.id)}
                                className={`link${photo.id === this.props.state.selectedPhotoId ? ' active-link' : ''}`}
                                href={photo.url}
+                               rel="noreferrer noopener"
                                target="_blank">
-                                <img className="photo__image" src={photo.url} width="100" height="100"/>
+                                <img className="photo__image" src={photo.url} width="100" height="100" alt=""/>
                                 {photo.title}
                             </a>
                         </li>

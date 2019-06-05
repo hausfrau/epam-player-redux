@@ -41,7 +41,7 @@ export default class AlbumsLists extends Component {
                             className={`link${albums[albumId].id === this.props.selectedAlbumId ? ' active-link' : ''}`}
                             activeClassName="active-link"
                             to={`/albums/${albumId}`}>
-                            <img className="album__image" src="" width="100" height="100"/>
+                            <img className="album__image" src="" width="100" height="100" alt=""/>
                             {albums[albumId].title}</NavLink>
                     </li>
                 ))}
