@@ -39,16 +39,22 @@ class PagesNavigation extends Component {
     render() {
         return (<nav>
                     <ul className="navigation">
-                        <li>
-                            <Link to="/player">
+                        <li className="navigation__item">
+                            <Link className="navigation__link" activeStyle={{
+                                backgroundColor: '#c4e8ee',
+                                border: '2px solid red'
+                            }} to="/player">
                                 {/*<button onClick={() => this.onPlayerButtonClick(this.props.state.tracks)}>*/}
                                 <button className="navigation__button" onClick={this.onPlayerButtonClick}>
                                     Player
                                 </button>
                             </Link>
                         </li>
-                        <li>
-                            <Link to="/albums">
+                        <li className="navigation__item">
+                            <Link className="navigation__link"  activeStyle={{
+                                backgroundColor: '#c4e8ee',
+                                border: '2px solid red'
+                            }} to="/albums">
                                 {/*<button onClick={() => this.onAlbumsButtonClick(this.props.state.albums)}>*/}
                                 <button className="navigation__button" onClick={this.onAlbumsButtonClick}>
                                     Albums
@@ -68,7 +74,8 @@ const mapDispatchToProps = dispatch => ({
     // onPlayerButtonClick: (tracks) => dispatch(loadTracks(tracks)),
     // onAlbumsButtonClick: (albums) => dispatch(loadAlbums(albums))
     onPlayerButtonClick: () => console.log('from mapststetoprops on playerbtn click') || dispatch(loadTracks()),
-    onAlbumsButtonClick: () => console.log('from mapststetoprops onAlbumsButtonClick') || dispatch(loadAlbums())
+    onAlbumsButtonClick: () => console.log('from mapststetoprops onAlbumsButtonClick') || dispatch(loadAlbums()),
+    dispatch
 });
 
 export default connect(

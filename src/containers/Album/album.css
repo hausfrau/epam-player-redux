@@ -1,0 +1,42 @@
+.photos-wrapper {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.back {
+    margin-bottom: 30px;
+}
+
+.photos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.photo {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.photo__image {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: #c4e8ee;
+    border: solid 1px #38f7c4;
+}

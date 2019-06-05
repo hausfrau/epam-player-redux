@@ -7,16 +7,18 @@ import App from './components/App';
 import getStore from './store/createStore';
 // import {Route} from "react-router";
 import {BrowserRouter as Router, Route} from "react-router-dom"
-import Player from "./pages/PlayerPage";
-import Albums from "./containers/Albums";
-import Album from "./containers/Album";
+import PlayerPage from "./pages/PlayerPage";
+import AlbumsPage from "./pages/AlbumsPage";
+// import Albums from "./containers/Albums";
+// import Album from "./containers/Album";
+
 
 const store = getStore;
-const PlayerPage = () => <Player/>;
+// const PlayerPage = () => <Player/>;
 
-const AlbumsPage = () => <Albums/>;
+// const AlbumsPage = () => <Albums/>;
 
-const AlbumPage = () => <Album/>;
+// const AlbumPage = () => <Album/>;
 // const history = syncHistoryWithStore(hash, store);
 
 render(
@@ -30,8 +32,8 @@ render(
         <Router>
             <Route path="/" component={App}/>
                 <Route path='/player' component={PlayerPage}/>
-                <Route exact path='/albums' component={AlbumsPage}/>
-                <Route path='/albums/:albumId' component={AlbumPage}/>
+                <Route path='/albums' component={AlbumsPage}/>
+                {/*<Route path='/albums/:albumId' component={AlbumPage}/>*/}
             {/*</Route>*/}
         </Router>
     </Provider>
