@@ -13,11 +13,11 @@ class Album extends Component {
 
         if (Object.keys(albums).length === 0) {
             if (this.selectedAlbumParameter && !albumId) {
-                this.props.dispatch(selectAlbum(this.selectedAlbumParameter));
+                this.props.selectAlbum(this.selectedAlbumParameter);
                 albumId = this.props.albumId;
             }
 
-            this.props.dispatch(loadAlbums()).then(() => loadAlbumPhotos(this.selectedAlbumParameter));
+            this.props.loadAlbums().then(() => loadAlbumPhotos(this.selectedAlbumParameter));
         }
 
         if (albums[albumId] && albums[albumId].photos.length === 0) {
@@ -28,7 +28,7 @@ class Album extends Component {
     render() {
         const {match, albums, allPhotos} = this.props;
         const albumId = match.params ? parseInt(match.params.albumId) : 0;
-        const findPhoto = (photoId) => allPhotos[photoId];
+        const findPhoto = photoId => allPhotos[photoId];
 
         if (this.props.state.fetchPhotosHasError) {
             return <p className="photos-wrapper">Loading error!</p>
@@ -84,7 +84,7 @@ class Album extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     state: state,
     albums: state.albums,
     albumId: state.selectedAlbumId,
@@ -92,10 +92,11 @@ const mapStateToProps = (state) => ({
     albumsAreLoading: state.albumsAreLoading
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    loadAlbumPhotos: (albumId) => dispatch(loadAlbumPhotos(albumId)),
-    onPhotoClick: (photoId) => dispatch(selectPhoto(photoId)),
-    dispatch
+const mapDispatchToProps = dispatch => ({
+    loadAlbumPhotos: albumId => dispatch(loadAlbumPhotos(albumId)),
+    onPhotoClick: photoId => dispatch(selectPhoto(photoId)),
+    selectAlbum: albumId => dispatch(selectAlbum(albumId)),
+    loadAlbums: () => dispatch(loadAlbums())
 });
 
 export default connect(

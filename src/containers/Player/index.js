@@ -4,9 +4,9 @@ import {setPlayer, setPlayingStatus, setTrack} from "../../actions";
 import {PLAYING_STATUS_PLAYING, PLAYING_STATUS_PAUSED, PLAYING_STATUS_STOPPED} from '../../constants';
 import './player.css';
 
-function CurrentTrack({playerId, players, tracks, setPlayingStatus, setTrack}) {
-    const findTrack = (_id) => tracks.find(track => track.id === _id);
-    const findIndex = (_id) => tracks.findIndex(track => track.id === _id);
+const CurrentTrack = ({playerId, players, tracks, setPlayingStatus, setTrack}) => {
+    const findTrack = _id => tracks.find(track => track.id === _id);
+    const findIndex = _id => tracks.findIndex(track => track.id === _id);
 
     const currentTrackId = players[playerId].currentTrackId;
     const playingStatus = players[playerId].playingStatus;
@@ -116,14 +116,12 @@ function CurrentTrack({playerId, players, tracks, setPlayingStatus, setTrack}) {
             </p>
         </div>
     );
-}
+};
 
-function mapStateToProps(state) {
-    return {
+const mapStateToProps = state => ({
         players: state.players,
         tracks: state.tracks
-    }
-}
+});
 
 export default connect(
     mapStateToProps,

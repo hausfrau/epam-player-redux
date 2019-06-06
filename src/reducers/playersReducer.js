@@ -19,7 +19,7 @@ const initialState = {
     }
 };
 
-function setPlayerSettings(state = initialState, action) {
+const setPlayerSettings = (state = initialState, action) => {
     switch (action.type) {
         case SET_PLAYER:
             return {
@@ -53,6 +53,6 @@ function setPlayerSettings(state = initialState, action) {
         default:
             return state;
     }
-}
+};
 
 export default setPlayerSettings;

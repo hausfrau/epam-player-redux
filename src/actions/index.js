@@ -56,29 +56,29 @@ export const toggleFavorite = favoriteTrackId => ({
     payload: favoriteTrackId
 });
 
-export const selectAlbum = (albumId) => ({
+export const selectAlbum = albumId => ({
     type: SELECT_ALBUM,
     payload: Number(albumId)
 });
 
-export const albumsAreLoading = (bool) => ({
+export const albumsAreLoading = bool => ({
     type: ALBUMS_ARE_LOADING,
     payload: bool
 });
 
-export const fetchAlbumsHasError = (bool) => ({
+export const fetchAlbumsHasError = bool => ({
     type: FETCH_ALBUMS_HAS_ERROR,
     payload: bool
 });
 
-export const fetchAlbumsSuccess = (albums) => ({
+export const fetchAlbumsSuccess = albums => ({
     type: FETCH_ALBUMS_SUCCESS,
     payload: albums
 });
 
 export const loadAlbums = () =>
-    (dispatch) => {
-        const convertFetchedAlbumsToStoredFormat = (json) => {
+    dispatch => {
+        const convertFetchedAlbumsToStoredFormat = json => {
             const fetchedAlbums = json;
             const storedAlbums = {};
             fetchedAlbums.forEach(album => {
@@ -120,31 +120,31 @@ export const addPhotosToAlbum = (albumId, photos) => ({
     payload: {albumId, photos}
 });
 
-export const selectPhoto = (photoId) => ({
+export const selectPhoto = photoId => ({
     type: SELECT_PHOTO,
     payload: photoId
 });
 
-export const photosAreLoading = (bool) => ({
+export const photosAreLoading = bool => ({
     type: PHOTOS_ARE_LOADING,
     payload: bool
 });
 
-export const fetchPhotosHasError = (bool) => ({
+export const fetchPhotosHasError = bool => ({
     type: FETCH_PHOTOS_HAS_ERROR,
     payload: bool
 });
 
-export const fetchPhotosSuccess = (photos) => ({
+export const fetchPhotosSuccess = photos => ({
     type: FETCH_PHOTOS_SUCCESS,
     payload: photos
 });
 
-export const loadAlbumPhotos = (albumId) =>
-    (dispatch) => {
+export const loadAlbumPhotos = albumId =>
+    dispatch => {
         let photos = new Set();
 
-        const convertFetchedPhotosToStoredFormat = (json) => {
+        const convertFetchedPhotosToStoredFormat = json => {
             const fetchedPhotos = json;
             const storedPhotos = {};
             fetchedPhotos.forEach(photo => {
@@ -186,7 +186,7 @@ export const loadAlbumPhotos = (albumId) =>
             .then(data => {
                 dispatch(fetchPhotosSuccess(convertFetchedPhotosToStoredFormat(data)));
             })
-            .catch((error) => {
+            .catch(error => {
                 console.error(error);
                 dispatch(fetchPhotosHasError(true))
             });

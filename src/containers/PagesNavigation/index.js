@@ -51,8 +51,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     onPlayerButtonClick: () => dispatch(loadTracks()),
-    onAlbumsButtonClick: () => dispatch(loadAlbums()),
-    dispatch
+    onAlbumsButtonClick: () => dispatch(loadAlbums())
 });
 
 export default connect(

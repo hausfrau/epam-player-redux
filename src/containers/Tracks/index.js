@@ -9,9 +9,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    onFirstPlayButtonClick: (id) => dispatch(setPlayer(PLAYER_FIRST, id, PLAYING_STATUS_PLAYING)),
-    onSecondPlayButtonClick: (id) => dispatch(setPlayer(PLAYER_SECOND, id, PLAYING_STATUS_PLAYING)),
-    onFavoriteButtonClick: (id) => dispatch(toggleFavorite(id))
+    onFirstPlayButtonClick: id => dispatch(setPlayer(PLAYER_FIRST, id, PLAYING_STATUS_PLAYING)),
+    onSecondPlayButtonClick: id => dispatch(setPlayer(PLAYER_SECOND, id, PLAYING_STATUS_PLAYING)),
+    onFavoriteButtonClick: id => dispatch(toggleFavorite(id))
 });
 
 export default connect(

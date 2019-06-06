@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {addTrack} from '../../actions';
 import './addTrack.css';
 
-const AddTrack = ({dispatch}) => {
+const AddTrack = ({add}) => {
     let name;
     let duration;
 
@@ -14,11 +14,11 @@ const AddTrack = ({dispatch}) => {
                 if (!name.value.trim()) {
                     return;
                 }
-                dispatch(addTrack({
+                add({
                     id: Math.random().toString(16).slice(-4),
                     name: name.value,
                     duration: duration.value
-                }));
+                });
                 name.value = '';
                 duration.value = '';
             }}>
@@ -37,4 +37,10 @@ const AddTrack = ({dispatch}) => {
     )
 };
 
-export default connect()(AddTrack)
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = dispatch => ({
+    add: track => dispatch(addTrack(track))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTrack);

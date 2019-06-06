@@ -3,8 +3,7 @@ import Albums from '../../containers/Albums';
 import Album from '../../containers/Album';
 import {Route} from "react-router-dom";
 
-export default function AlbumsPage() {
-    return (
+export default () => (
         <div>
             <Route
                 exact
@@ -15,5 +14,4 @@ export default function AlbumsPage() {
                 path='/albums/:albumId'
                 component={Album}
             />
-        </div>);
-}
+        </div>)

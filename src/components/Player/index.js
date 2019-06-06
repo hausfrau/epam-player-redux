@@ -6,12 +6,11 @@ import AddTrack from "../../containers/AddTrack";
 import FavoritesTracks from "../../containers/FavoritesTracks";
 import './player.css';
 import {Link} from "react-router-dom";
-import {loadTracks} from "../../actions";
 
 export default class extends Component {
     componentDidMount() {
         if (this.props.tracks.length === 0) {
-            this.props.dispatch(loadTracks());
+            this.props.loadTracks();
         }
     }
 

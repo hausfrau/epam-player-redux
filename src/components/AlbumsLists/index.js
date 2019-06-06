@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import {NavLink, Link} from 'react-router-dom';
 import './albumsList.css';
-import {loadAlbums} from "../../actions";
 
 export default class AlbumsLists extends Component {
     onAlbumClick = this.props.onAlbumClick;
 
     componentDidMount() {
         if (Object.keys(this.props.albums).length === 0 && !this.props.albumsAreLoading) {
-            this.props.dispatch(loadAlbums());
+            this.props.loadAlbums();
         }
     }
 
