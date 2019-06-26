@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import FavoritesTracksListItem from '../FavoritesTracksListItem';
 import {PLAYER_FIRST, PLAYER_SECOND} from '../../constants';
 import './favoritesTracksList.css';
 
-export default class FavoritesTracksList extends Component {
+export default class FavoritesTracksList extends PureComponent {
     render() {
         const {tracks, players} = this.props;
         const playerFirstCurrentTrackId = players[PLAYER_FIRST].currentTrackId;

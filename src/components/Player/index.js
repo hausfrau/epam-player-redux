@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Player from "../../containers/Player";
 import {PLAYER_FIRST, PLAYER_SECOND} from "../../constants";
 import Tracks from "../../containers/Tracks";
@@ -7,7 +7,7 @@ import FavoritesTracks from "../../containers/FavoritesTracks";
 import './player.css';
 import {Link} from "react-router-dom";
 
-export default class extends Component {
+export default class extends PureComponent {
     componentDidMount() {
         const {tracks, loadTracks} = this.props;
 

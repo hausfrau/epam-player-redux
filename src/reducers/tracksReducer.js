@@ -36,7 +36,7 @@ const initialState = [
     },
 ];
 
-const tracksReducer = (state = [], action) => {
+export default (state = [], action) => {
     switch (action.type) {
         case LOAD_TRACKS:
             return initialState;
@@ -60,5 +60,3 @@ const tracksReducer = (state = [], action) => {
             return state;
     }
 };
-
-export default tracksReducer;

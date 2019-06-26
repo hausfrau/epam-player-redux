@@ -19,7 +19,7 @@ const initialState = {
     }
 };
 
-const playersReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
     switch (action.type) {
         case SET_PLAYER:
             return {
@@ -54,5 +54,3 @@ const playersReducer = (state = initialState, action) => {
             return state;
     }
 };
-
-export default playersReducer;
