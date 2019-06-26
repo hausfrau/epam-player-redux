@@ -8,7 +8,7 @@
 .albums {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -17,15 +17,23 @@
 .album {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 200px;
-    margin-bottom: 10px;
+    min-height: 130px;
+    margin: 20px;
 }
 
-.album__image {
-    display: block;
+.album__link {
     width: 100px;
-    height: 100px;
+    height: 100%;
     background-color: #c4e8ee;
     border: solid 1px #38f7c4;
 }
+
+/*.album__image {*/
+/*    display: block;*/
+/*    width: 100px;*/
+/*    height: 100px;*/
+/*    background-color: #c4e8ee;*/
+/*    border: solid 1px #38f7c4;*/
+/*}*/

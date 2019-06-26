@@ -9,8 +9,10 @@ import {Link} from "react-router-dom";
 
 export default class extends Component {
     componentDidMount() {
-        if (this.props.tracks.length === 0) {
-            this.props.loadTracks();
+        const {tracks, loadTracks} = this.props;
+
+        if (tracks.length === 0) {
+            loadTracks();
         }
     }
 

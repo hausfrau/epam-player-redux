@@ -1,4 +1,8 @@
-import {ADD_TRACK, TOGGLE_FAVORITE, LOAD_TRACKS} from '../constants';
+// import {ADD_TRACK, TOGGLE_FAVORITE, LOAD_TRACKS} from '../constants';
+
+import {TRACKS_ACTIONS} from '../actions/actionsTypes';
+
+const {ADD_TRACK, TOGGLE_FAVORITE, LOAD_TRACKS} = TRACKS_ACTIONS;
 
 const initialState = [
     {
@@ -34,7 +38,7 @@ const initialState = [
     },
 ];
 
-const tracks = (state = [], action) => {
+const tracksReducer = (state = [], action) => {
     switch (action.type) {
         case LOAD_TRACKS:
             return initialState;
@@ -59,4 +63,4 @@ const tracks = (state = [], action) => {
     }
 };
 
-export default tracks;
+export default tracksReducer;

@@ -1,21 +1,45 @@
-import {
+// import {
+//     LOAD_TRACKS,
+//     ADD_TRACK,
+//     SET_PLAYING_STATUS,
+//     SET_PLAYER,
+//     TOGGLE_FAVORITE,
+//     SET_CURRENT_TRACK,
+//     // SELECT_ALBUM,
+//     // SELECT_PHOTO,
+//     ALBUMS_ARE_LOADING,
+//     FETCH_ALBUMS_HAS_ERROR,
+//     FETCH_ALBUMS_SUCCESS,
+//     ADD_PHOTOS_TO_ALBUM,
+//     PHOTOS_ARE_LOADING,
+//     FETCH_PHOTOS_HAS_ERROR,
+//     FETCH_PHOTOS_SUCCESS
+// } from '../constants';
+
+import {TRACKS_ACTIONS, ALBUMS_ACTIONS, PHOTOS_ACTIONS} from './actionsTypes';
+import fetch from 'isomorphic-fetch';
+
+const {
     LOAD_TRACKS,
     ADD_TRACK,
     SET_PLAYING_STATUS,
     SET_PLAYER,
     TOGGLE_FAVORITE,
     SET_CURRENT_TRACK,
-    SELECT_ALBUM,
-    SELECT_PHOTO,
+} = TRACKS_ACTIONS;
+
+const {
     ALBUMS_ARE_LOADING,
     FETCH_ALBUMS_HAS_ERROR,
     FETCH_ALBUMS_SUCCESS,
+} = ALBUMS_ACTIONS;
+
+const {
     ADD_PHOTOS_TO_ALBUM,
     PHOTOS_ARE_LOADING,
     FETCH_PHOTOS_HAS_ERROR,
     FETCH_PHOTOS_SUCCESS
-} from '../constants';
-import fetch from 'isomorphic-fetch';
+} = PHOTOS_ACTIONS;
 
 export const loadTracks = () => ({
     type: LOAD_TRACKS
@@ -56,10 +80,10 @@ export const toggleFavorite = favoriteTrackId => ({
     payload: favoriteTrackId
 });
 
-export const selectAlbum = albumId => ({
-    type: SELECT_ALBUM,
-    payload: Number(albumId)
-});
+// export const selectAlbum = albumId => ({
+//     type: SELECT_ALBUM,
+//     payload: Number(albumId)
+// });
 
 export const albumsAreLoading = bool => ({
     type: ALBUMS_ARE_LOADING,
@@ -94,6 +118,7 @@ export const loadAlbums = () =>
 
         dispatch(albumsAreLoading(true));
 
+        // axios
         return fetch('https://jsonplaceholder.typicode.com/albums', {
             method: 'get',
             headers: {
@@ -120,10 +145,10 @@ export const addPhotosToAlbum = (albumId, photos) => ({
     payload: {albumId, photos}
 });
 
-export const selectPhoto = photoId => ({
-    type: SELECT_PHOTO,
-    payload: photoId
-});
+// export const selectPhoto = photoId => ({
+//     type: SELECT_PHOTO,
+//     payload: photoId
+// });
 
 export const photosAreLoading = bool => ({
     type: PHOTOS_ARE_LOADING,

@@ -6,14 +6,18 @@ import './pagesNavigation.css';
 
 class PagesNavigation extends Component {
     onPlayerButtonClick = () => {
-        if (this.props.state.tracks.length === 0) {
-            this.props.onPlayerButtonClick();
+        const {state, onPlayerButtonClick} = this.props;
+
+        if (state.tracks.length === 0) {
+            onPlayerButtonClick();
         }
     };
 
     onAlbumsButtonClick = () => {
-        if (Object.keys(this.props.state.albums).length === 0) {
-            this.props.onAlbumsButtonClick();
+        const {state, onAlbumsButtonClick} = this.props;
+
+        if (Object.keys(state.albums).length === 0) {
+            onAlbumsButtonClick();
         }
     };
 

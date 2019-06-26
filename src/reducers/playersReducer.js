@@ -1,12 +1,22 @@
+// import {
+//     PLAYER_FIRST,
+//     PLAYER_SECOND,
+//     SET_PLAYING_STATUS,
+//     PLAYING_STATUS_PAUSED,
+//     PLAYING_STATUS_STOPPED,
+//     SET_PLAYER,
+//     SET_CURRENT_TRACK
+// } from '../constants';
+
 import {
     PLAYER_FIRST,
     PLAYER_SECOND,
-    SET_PLAYING_STATUS,
     PLAYING_STATUS_PAUSED,
-    PLAYING_STATUS_STOPPED,
-    SET_PLAYER,
-    SET_CURRENT_TRACK
+    PLAYING_STATUS_STOPPED
 } from '../constants';
+import {TRACKS_ACTIONS} from '../actions/actionsTypes';
+
+const {SET_PLAYER, SET_CURRENT_TRACK, SET_PLAYING_STATUS} =  TRACKS_ACTIONS;
 
 const initialState = {
     [PLAYER_FIRST]: {
@@ -19,7 +29,7 @@ const initialState = {
     }
 };
 
-const setPlayerSettings = (state = initialState, action) => {
+const playersReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_PLAYER:
             return {
@@ -55,4 +65,4 @@ const setPlayerSettings = (state = initialState, action) => {
     }
 };
 
-export default setPlayerSettings;
+export default playersReducer;

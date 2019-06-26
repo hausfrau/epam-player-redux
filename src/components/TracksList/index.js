@@ -4,15 +4,14 @@ import './trackList.css';
 import {PLAYER_FIRST, PLAYER_SECOND} from "../../constants";
 
 export default class TracksList extends Component {
-    onFirstPlayButtonClick = id => this.props.onFirstPlayButtonClick(id);
-
-    onSecondPlayButtonClick = id => this.props.onSecondPlayButtonClick(id);
-
-    onFavoriteButtonClick = id => this.props.onFavoriteButtonClick(id);
+    // onFirstPlayButtonClick = id => this.props.onFirstPlayButtonClick(id);
+    //
+    // onSecondPlayButtonClick = id => this.props.onSecondPlayButtonClick(id);
+    //
+    // onFavoriteButtonClick = id => this.props.onFavoriteButtonClick(id);
 
     render() {
-        const tracks = this.props.tracks;
-        const players = this.props.players;
+        const {tracks, players} = this.props;
         const playerFirstCurrentTrackId = players[PLAYER_FIRST].currentTrackId;
         const playerSecondCurrentTrackId = players[PLAYER_SECOND].currentTrackId;
 
@@ -26,9 +25,9 @@ export default class TracksList extends Component {
                                     playerFirstCurrentTrackId={playerFirstCurrentTrackId}
                                     playerSecondCurrentTrackId={playerSecondCurrentTrackId}
                                     key={track.id}
-                                    onFirstPlayButtonClick={() => this.onFirstPlayButtonClick(track.id)}
-                                    onSecondPlayButtonClick={() => this.onSecondPlayButtonClick(track.id)}
-                                    onFavoriteButtonClick={() => this.onFavoriteButtonClick(track.id)}
+                                    onFirstPlayButtonClick={() => this.props.onFirstPlayButtonClick(track.id)}
+                                    onSecondPlayButtonClick={() => this.props.onSecondPlayButtonClick(track.id)}
+                                    onFavoriteButtonClick={() => this.props.onFavoriteButtonClick(track.id)}
                     />
                 ))}
             </ul>

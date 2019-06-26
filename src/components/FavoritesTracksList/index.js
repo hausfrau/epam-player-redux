@@ -4,15 +4,14 @@ import {PLAYER_FIRST, PLAYER_SECOND} from '../../constants';
 import './favoritesTracksList.css';
 
 export default class FavoritesTracksList extends Component {
-    onFirstPlayButtonClick = id => this.props.onFirstPlayButtonClick(id);
-
-    onSecondPlayButtonClick = id => this.props.onSecondPlayButtonClick(id);
-
-    onDeleteFavoriteButtonClick = id => this.props.onDeleteFavoriteButtonClick(id);
+    // onFirstPlayButtonClick = id => this.props.onFirstPlayButtonClick(id);
+    //
+    // onSecondPlayButtonClick = id => this.props.onSecondPlayButtonClick(id);
+    //
+    // onDeleteFavoriteButtonClick = id => this.props.onDeleteFavoriteButtonClick(id);
 
     render() {
-        const tracks = this.props.tracks;
-        const players = this.props.players;
+        const {tracks, players} = this.props;
         const playerFirstCurrentTrackId = players[PLAYER_FIRST].currentTrackId;
         const playerSecondCurrentTrackId = players[PLAYER_SECOND].currentTrackId;
 
@@ -22,9 +21,9 @@ export default class FavoritesTracksList extends Component {
                     <FavoritesTracksListItem track={track} key={track.id}
                                              playerFirstCurrentTrackId={playerFirstCurrentTrackId}
                                              playerSecondCurrentTrackId={playerSecondCurrentTrackId}
-                                             onFirstPlayButtonClick={() => this.onFirstPlayButtonClick(track.id)}
-                                             onSecondPlayButtonClick={() => this.onSecondPlayButtonClick(track.id)}
-                                             onDeleteFavoriteButtonClick={() => this.onDeleteFavoriteButtonClick(track.id)}
+                                             onFirstPlayButtonClick={() => this.props.onFirstPlayButtonClick(track.id)}
+                                             onSecondPlayButtonClick={() => this.props.onSecondPlayButtonClick(track.id)}
+                                             onDeleteFavoriteButtonClick={() => this.props.onDeleteFavoriteButtonClick(track.id)}
                     />
                 ))}
             </ul>
