@@ -1,21 +1,3 @@
-// import {
-//     LOAD_TRACKS,
-//     ADD_TRACK,
-//     SET_PLAYING_STATUS,
-//     SET_PLAYER,
-//     TOGGLE_FAVORITE,
-//     SET_CURRENT_TRACK,
-//     // SELECT_ALBUM,
-//     // SELECT_PHOTO,
-//     ALBUMS_ARE_LOADING,
-//     FETCH_ALBUMS_HAS_ERROR,
-//     FETCH_ALBUMS_SUCCESS,
-//     ADD_PHOTOS_TO_ALBUM,
-//     PHOTOS_ARE_LOADING,
-//     FETCH_PHOTOS_HAS_ERROR,
-//     FETCH_PHOTOS_SUCCESS
-// } from '../constants';
-
 import {TRACKS_ACTIONS, ALBUMS_ACTIONS, PHOTOS_ACTIONS} from './actionsTypes';
 import fetch from 'isomorphic-fetch';
 
@@ -80,11 +62,6 @@ export const toggleFavorite = favoriteTrackId => ({
     payload: favoriteTrackId
 });
 
-// export const selectAlbum = albumId => ({
-//     type: SELECT_ALBUM,
-//     payload: Number(albumId)
-// });
-
 export const albumsAreLoading = bool => ({
     type: ALBUMS_ARE_LOADING,
     payload: bool
@@ -144,11 +121,6 @@ export const addPhotosToAlbum = (albumId, photos) => ({
     type: ADD_PHOTOS_TO_ALBUM,
     payload: {albumId, photos}
 });
-
-// export const selectPhoto = photoId => ({
-//     type: SELECT_PHOTO,
-//     payload: photoId
-// });
 
 export const photosAreLoading = bool => ({
     type: PHOTOS_ARE_LOADING,

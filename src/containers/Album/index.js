@@ -1,32 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {loadAlbumPhotos, loadAlbums} from '../../actions';
-// import {loadAlbumPhotos, albumsReducer, selectAlbum, selectPhoto} from '../../actions';
 import {Link} from 'react-router-dom';
 import './album.css';
 
 class Album extends Component {
     albumId = this.props.match.params.albumId;
-    // selectedAlbumParameter = this.props.match.params.albumId;
-    onPhotoClick = this.props.onPhotoClick;
-// {match: {params: {albumId: {selectedAlbumParameter} }}, onPhotoClick} = this.props;
 
     componentDidMount() {
-        let {albums,
-            // albumId,
-            loadAlbumPhotos,
-            // selectAlbum,
-            loadAlbums} = this.props;
+        let {albums, loadAlbumPhotos, loadAlbums} = this.props;
 
         if (Object.keys(albums).length === 0) {
-            // if (this.selectedAlbumParameter && !albumId) {
-            //     selectAlbum(this.selectedAlbumParameter);
-            //     //здесь проверить корректность id
-            //     // albumId = this.props.albumId;
-            // }
-
             loadAlbums().then(() => loadAlbumPhotos(this.albumId));
-            // albumsReducer().then(() => loadAlbumPhotos(this.selectedAlbumParameter));
         }
 
         if (albums[this.albumId] && albums[this.albumId].photos.length === 0) {
@@ -35,13 +20,8 @@ class Album extends Component {
     }
 
     render() {
-        // const {state, match, albums, allPhotos} = this.props;
-        // const albumId = match.params ? parseInt(match.params.albumId) : 0;
         const {state, albums, allPhotos} = this.props;
-        // const {state, albums, allPhotos, match: {params: {albumId}}} = this.props;
         const findPhoto = photoId => allPhotos[photoId];
-
-        console.log(this.props);
 
         if (state.fetchPhotosHasError) {
             return <p className="photos-wrapper">Loading error!</p>
@@ -74,10 +54,9 @@ class Album extends Component {
                             </li>
                         }
 
-                       {/*<a onClick={() => this.onPhotoClick(photo.id)}*/}
                         return <li className="photo" key={photo.id}>
                             <a className="link"
-                               // className={`link${photo.id === state.selectedPhotoId ? ' active-link' : ''}`}
+                                // className={`link${photo.id === state.selectedPhotoId ? ' active-link' : ''}`}
                                href={photo.url}
                                rel="noreferrer noopener"
                                target="_blank">
@@ -101,15 +80,12 @@ class Album extends Component {
 const mapStateToProps = state => ({
     state: state,
     albums: state.albums,
-    // albumId: state.selectedAlbumId,
     allPhotos: state.photos,
     albumsAreLoading: state.albumsAreLoading
 });
 
 const mapDispatchToProps = dispatch => ({
     loadAlbumPhotos: albumId => dispatch(loadAlbumPhotos(albumId)),
-    // onPhotoClick: photoId => dispatch(selectPhoto(photoId)),
-    // selectAlbum: albumId => dispatch(selectAlbum(albumId)),
     loadAlbums: () => dispatch(loadAlbums())
 });
 

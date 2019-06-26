@@ -4,12 +4,6 @@ import './trackList.css';
 import {PLAYER_FIRST, PLAYER_SECOND} from "../../constants";
 
 export default class TracksList extends Component {
-    // onFirstPlayButtonClick = id => this.props.onFirstPlayButtonClick(id);
-    //
-    // onSecondPlayButtonClick = id => this.props.onSecondPlayButtonClick(id);
-    //
-    // onFavoriteButtonClick = id => this.props.onFavoriteButtonClick(id);
-
     render() {
         const {tracks, players} = this.props;
         const playerFirstCurrentTrackId = players[PLAYER_FIRST].currentTrackId;

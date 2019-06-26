@@ -12,10 +12,7 @@ export default class AlbumsLists extends PureComponent {
     }
 
     render() {
-        const {fetchAlbumsHasError, albumsAreLoading, albums
-            // , onAlbumClick
-            // selectedAlbumId
-        } = this.props;
+        const {fetchAlbumsHasError, albumsAreLoading, albums} = this.props;
 
         if (fetchAlbumsHasError) {
             return <p className="albums-wrapper">Loading error!</p>
@@ -32,20 +29,16 @@ export default class AlbumsLists extends PureComponent {
                     {`Count = ${Object.keys(albums).length}`}
                 </h2>
             </header>
-            <Link className="back" to="/" >
+            <Link className="back" to="/">
                 Back
             </Link>
             <ul className="albums">
                 {Object.keys(albums).map(albumId => (
                     <li className="album" key={albums[albumId].id}>
-                    {/*<li onClick={() => onAlbumClick(albumId)} className="album" key={albums[albumId].id}>*/}
                         <NavLink
-                            // className={`album__link link${albums[albumId].id === selectedAlbumId ? ' active-link' : ''}`}
                             className="album__link link"
-                            //здесь изменить, взять из урла
                             activeClassName="active-link"
                             to={`/albums/${albumId}`}>
-                            {/*<img className="album__image" src="" width="100" height="100" alt={albums[albumId].title}/>*/}
                             {albums[albumId].title}
                         </NavLink>
                     </li>

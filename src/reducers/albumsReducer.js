@@ -1,11 +1,3 @@
-// import {
-//     ALBUMS_ARE_LOADING,
-//     FETCH_ALBUMS_HAS_ERROR,
-//     FETCH_ALBUMS_SUCCESS,
-//     // SELECT_ALBUM,
-//     ADD_PHOTOS_TO_ALBUM
-// } from "../constants";
-
 import {ALBUMS_ACTIONS, PHOTOS_ACTIONS} from '../actions/actionsTypes';
 
 const {
@@ -53,12 +45,3 @@ export const fetchAlbumsHasError = (state = false, action) => {
             return state;
     }
 };
-
-// export const setSelectedAlbum = (state = null, action) => {
-//     switch (action.type) {
-//         case SELECT_ALBUM:
-//             return action.payload;
-//         default:
-//             return state;
-//     }
-// };

@@ -1,13 +1,3 @@
-// import {
-//     PLAYER_FIRST,
-//     PLAYER_SECOND,
-//     SET_PLAYING_STATUS,
-//     PLAYING_STATUS_PAUSED,
-//     PLAYING_STATUS_STOPPED,
-//     SET_PLAYER,
-//     SET_CURRENT_TRACK
-// } from '../constants';
-
 import {
     PLAYER_FIRST,
     PLAYER_SECOND,

@@ -1,5 +1,3 @@
-// import {ADD_TRACK, TOGGLE_FAVORITE, LOAD_TRACKS} from '../constants';
-
 import {TRACKS_ACTIONS} from '../actions/actionsTypes';
 
 const {ADD_TRACK, TOGGLE_FAVORITE, LOAD_TRACKS} = TRACKS_ACTIONS;
