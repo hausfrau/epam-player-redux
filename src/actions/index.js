@@ -1,5 +1,5 @@
 import {TRACKS_ACTIONS, ALBUMS_ACTIONS, PHOTOS_ACTIONS} from './actionsTypes';
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 
 const {
     LOAD_TRACKS,
@@ -95,26 +95,15 @@ export const loadAlbums = () =>
 
         dispatch(albumsAreLoading(true));
 
-        // axios
-        return fetch('https://jsonplaceholder.typicode.com/albums', {
-            method: 'get',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
+        return axios.get('https://jsonplaceholder.typicode.com/albums')
             .then(response => {
-                if (!response.ok) {
-                    console.error(response.statusText);
-                    throw Error(response.statusText);
-                }
-
                 dispatch(albumsAreLoading(false));
-
-                return response.json();
+                dispatch(fetchAlbumsSuccess(convertFetchedAlbumsToStoredFormat(response.data)));
             })
-            .then(data => dispatch(fetchAlbumsSuccess(convertFetchedAlbumsToStoredFormat(data))))
-            .catch(() => dispatch(fetchAlbumsHasError(true)));
+            .catch((error) => {
+                console.error(error);
+                dispatch(fetchAlbumsHasError(true))
+            });
     };
 
 export const addPhotosToAlbum = (albumId, photos) => ({
@@ -164,24 +153,10 @@ export const loadAlbumPhotos = albumId =>
 
         dispatch(photosAreLoading(true));
 
-        return fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`, {
-            method: 'get',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
+        return axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`)
             .then(response => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-
                 dispatch(photosAreLoading(false));
-
-                return response.json();
-            })
-            .then(data => {
-                dispatch(fetchPhotosSuccess(convertFetchedPhotosToStoredFormat(data)));
+                dispatch(fetchPhotosSuccess(convertFetchedPhotosToStoredFormat(response.data)));
             })
             .catch(error => {
                 console.error(error);
