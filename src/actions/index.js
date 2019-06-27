@@ -1,4 +1,4 @@
-import {TRACKS_ACTIONS, ALBUMS_ACTIONS, PHOTOS_ACTIONS} from './actionsTypes';
+import {TracksActions, AlbumsActions, PhotosActions} from './actionsTypes';
 import axios from 'axios';
 
 const {
@@ -8,20 +8,20 @@ const {
     SET_PLAYER,
     TOGGLE_FAVORITE,
     SET_CURRENT_TRACK,
-} = TRACKS_ACTIONS;
+} = TracksActions;
 
 const {
     ALBUMS_ARE_LOADING,
     FETCH_ALBUMS_HAS_ERROR,
     FETCH_ALBUMS_SUCCESS,
-} = ALBUMS_ACTIONS;
+} = AlbumsActions;
 
 const {
     ADD_PHOTOS_TO_ALBUM,
     PHOTOS_ARE_LOADING,
     FETCH_PHOTOS_HAS_ERROR,
     FETCH_PHOTOS_SUCCESS
-} = PHOTOS_ACTIONS;
+} = PhotosActions;
 
 export const loadTracks = () => ({
     type: LOAD_TRACKS

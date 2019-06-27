@@ -1,10 +1,10 @@
-import {PHOTOS_ACTIONS} from "../actions/actionsTypes";
+import {PhotosActions} from "../actions/actionsTypes";
 
 const {
     FETCH_PHOTOS_HAS_ERROR,
     FETCH_PHOTOS_SUCCESS,
     PHOTOS_ARE_LOADING
-} = PHOTOS_ACTIONS;
+} = PhotosActions;
 
 export const photosReducer = (state = [], action) => {
     switch (action.type) {

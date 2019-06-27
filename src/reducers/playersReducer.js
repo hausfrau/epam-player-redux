@@ -4,9 +4,9 @@ import {
     PLAYING_STATUS_PAUSED,
     PLAYING_STATUS_STOPPED
 } from '../constants';
-import {TRACKS_ACTIONS} from '../actions/actionsTypes';
+import {TracksActions} from '../actions/actionsTypes';
 
-const {SET_PLAYER, SET_CURRENT_TRACK, SET_PLAYING_STATUS} =  TRACKS_ACTIONS;
+const {SET_PLAYER, SET_CURRENT_TRACK, SET_PLAYING_STATUS} =  TracksActions;
 
 const initialState = {
     [PLAYER_FIRST]: {

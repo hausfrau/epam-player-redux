@@ -1,12 +1,12 @@
-import {ALBUMS_ACTIONS, PHOTOS_ACTIONS} from '../actions/actionsTypes';
+import {AlbumsActions, PhotosActions} from '../actions/actionsTypes';
 
 const {
     ALBUMS_ARE_LOADING,
     FETCH_ALBUMS_HAS_ERROR,
     FETCH_ALBUMS_SUCCESS
-} = ALBUMS_ACTIONS;
+} = AlbumsActions;
 
-const {ADD_PHOTOS_TO_ALBUM} = PHOTOS_ACTIONS;
+const {ADD_PHOTOS_TO_ALBUM} = PhotosActions;
 
 export const albumsAreLoading = (state = false, action) => {
     switch (action.type) {
