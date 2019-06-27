@@ -3,7 +3,8 @@ import {AlbumsActions, PhotosActions} from '../actions/actionsTypes';
 const {
     ALBUMS_ARE_LOADING,
     FETCH_ALBUMS_HAS_ERROR,
-    FETCH_ALBUMS_SUCCESS
+    FETCH_ALBUMS_SUCCESS,
+    LOAD_ALBUMS
 } = AlbumsActions;
 
 const {ADD_PHOTOS_TO_ALBUM} = PhotosActions;
@@ -32,6 +33,8 @@ export const albumsReducer = (state = [], action) => {
                     photos
                 }
             };
+        case LOAD_ALBUMS:
+            return state;
         default:
             return state;
     }

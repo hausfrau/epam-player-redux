@@ -11,6 +11,7 @@ export const AlbumsActions = {
     ALBUMS_ARE_LOADING: 'ALBUMS_ARE_LOADING',
     FETCH_ALBUMS_HAS_ERROR: 'FETCH_ALBUMS_HAS_ERROR',
     FETCH_ALBUMS_SUCCESS: 'FETCH_ALBUMS_SUCCESS',
+    LOAD_ALBUMS: 'LOAD_ALBUMS'
 };
 
 export const PhotosActions = {

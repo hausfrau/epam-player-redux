@@ -1,6 +1,6 @@
 import {
-    PLAYER_FIRST,
-    PLAYER_SECOND,
+    // PLAYER_FIRST,
+    // PLAYER_SECOND,
     PLAYING_STATUS_PAUSED,
     PLAYING_STATUS_STOPPED
 } from '../constants';
@@ -8,18 +8,19 @@ import {TracksActions} from '../actions/actionsTypes';
 
 const {SET_PLAYER, SET_CURRENT_TRACK, SET_PLAYING_STATUS} =  TracksActions;
 
-const initialState = {
-    [PLAYER_FIRST]: {
-        currentTrackId: null,
-        playingStatus: PLAYING_STATUS_STOPPED
-    },
-    [PLAYER_SECOND]: {
-        currentTrackId: null,
-        playingStatus: PLAYING_STATUS_STOPPED
-    }
-};
+// const initialState = {
+//     [PLAYER_FIRST]: {
+//         currentTrackId: null,
+//         playingStatus: PLAYING_STATUS_STOPPED
+//     },
+//     [PLAYER_SECOND]: {
+//         currentTrackId: null,
+//         playingStatus: PLAYING_STATUS_STOPPED
+//     }
+// };
 
-export default (state = initialState, action) => {
+// export default (state = initialState, action) => {
+export default (state = {}, action) => {
     switch (action.type) {
         case SET_PLAYER:
             return {

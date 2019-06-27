@@ -1,4 +1,5 @@
 import {TracksActions, AlbumsActions, PhotosActions} from './actionsTypes';
+import {convertFetchedAlbumsToStoredFormat} from '../utils';
 import axios from 'axios';
 
 const {
@@ -7,13 +8,14 @@ const {
     SET_PLAYING_STATUS,
     SET_PLAYER,
     TOGGLE_FAVORITE,
-    SET_CURRENT_TRACK,
+    SET_CURRENT_TRACK
 } = TracksActions;
 
 const {
     ALBUMS_ARE_LOADING,
     FETCH_ALBUMS_HAS_ERROR,
     FETCH_ALBUMS_SUCCESS,
+    LOAD_ALBUMS
 } = AlbumsActions;
 
 const {
@@ -79,19 +81,19 @@ export const fetchAlbumsSuccess = albums => ({
 
 export const loadAlbums = () =>
     dispatch => {
-        const convertFetchedAlbumsToStoredFormat = json => {
-            const fetchedAlbums = json;
-            const storedAlbums = {};
-            fetchedAlbums.forEach(album => {
-                const {id, title} = album;
-                storedAlbums[id] = {
-                    id: id,
-                    title: title,
-                    photos: []
-                };
-            });
-            return storedAlbums;
-        };
+        // const convertFetchedAlbumsToStoredFormat = json => {
+        //     const fetchedAlbums = json;
+        //     const storedAlbums = {};
+        //     fetchedAlbums.forEach(album => {
+        //         const {id, title} = album;
+        //         storedAlbums[id] = {
+        //             id: id,
+        //             title: title,
+        //             photos: []
+        //         };
+        //     });
+        //     return storedAlbums;
+        // };
 
         dispatch(albumsAreLoading(true));
 
