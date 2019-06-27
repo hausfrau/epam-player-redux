@@ -19,39 +19,7 @@ import {PLAYER_FIRST, PLAYER_SECOND, PLAYING_STATUS_STOPPED} from "../constants"
 // });
 
 const initialPlayersState = {
-    tracks: [
-        {
-            id: 1,
-            name: 'Track 1',
-            duration: '04.20',
-            isFavorite: false
-        },
-        {
-            id: 2,
-            name: 'Track 2',
-            duration: '02.00',
-            isFavorite: false
-        },
-        {
-            id: 3,
-            name: 'Track 3',
-            duration: '03.32',
-            isFavorite: false
-        },
-        {
-            id: 4,
-            name: 'Track 4',
-            duration: '05.10',
-            isFavorite: true
-
-        },
-        {
-            id: 5,
-            name: 'Track 5',
-            duration: '03.48',
-            isFavorite: false
-        }
-    ],
+    tracks: [],
     players: {
         [PLAYER_FIRST]: {
             currentTrackId: null,
