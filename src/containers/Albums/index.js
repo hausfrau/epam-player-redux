@@ -5,21 +5,22 @@ import AlbumsLists from "../../components/AlbumsLists";
 
 class Albums extends Component {
     render() {
-        const {onAlbumClick, albums, albumsAreLoading, fetchAlbumsHasError, loadAlbums} = this.props;
+        const {onAlbumClick, albums, fetchAlbumsError, fetchAlbumsLoading, loadAlbums} = this.props;
+
         return (
             <AlbumsLists onAlbumClick={onAlbumClick}
                          albums={albums}
-                         albumsAreLoading={albumsAreLoading}
-                         fetchAlbumsHasError={fetchAlbumsHasError}
+                         fetchAlbumsError={fetchAlbumsError}
+                         fetchAlbumsLoading={fetchAlbumsLoading}
                          loadAlbums={loadAlbums}/>
         );
     };
 }
 
 const mapStateToProps = state => ({
-    albums: state.albums,
-    albumsAreLoading: state.albumsAreLoading,
-    fetchAlbumsHasError: state.fetchAlbumsHasError,
+    albums: state.photoAlbum.albums,
+    fetchAlbumsError: state.photoAlbum.fetchAlbums.error,
+    fetchAlbumsLoading: state.photoAlbum.fetchAlbums.loading
 });
 
 const mapDispatchToProps = dispatch => ({

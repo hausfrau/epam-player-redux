@@ -1,35 +1,30 @@
-import {PhotosActions} from "../actions/actionsTypes";
-
-const {
-    FETCH_PHOTOS_HAS_ERROR,
-    FETCH_PHOTOS_SUCCESS,
-    PHOTOS_ARE_LOADING
-} = PhotosActions;
+import {FetchPhotosActions, PhotosActions} from "../actions/actionsTypes";
+import {convertFetchedPhotosToStoredFormat} from '../utils';
 
 export const photosReducer = (state = [], action) => {
     switch (action.type) {
-        case FETCH_PHOTOS_SUCCESS:
+        case PhotosActions.PHOTOS_ARE_STORING:
+            const photos = convertFetchedPhotosToStoredFormat(action.payload);
+
             return {
                 ...state,
-                ...action.payload
+                ...photos
             };
         default:
             return state;
     }
 };
 
-export const photosAreLoading = (state = false, action) => {
-    switch (action.type) {
-        case PHOTOS_ARE_LOADING:
-            return action.payload;
-        default:
-            return state;
-    }
+const initialFetchState = {
+    error: null,
+    loading: false
 };
 
-export const fetchPhotosHasError = (state = false, action) => {
+export const fetchPhotos = (state = initialFetchState, action) => {
     switch (action.type) {
-        case FETCH_PHOTOS_HAS_ERROR:
+        case FetchPhotosActions.START:
+        case FetchPhotosActions.SUCCESS:
+        case FetchPhotosActions.ERROR:
             return action.payload;
         default:
             return state;

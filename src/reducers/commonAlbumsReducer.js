@@ -1,12 +1,10 @@
 import {combineReducers} from 'redux';
-import {albumsReducer, fetchAlbumsHasError, albumsAreLoading} from './albumsReducer';
-import {photosReducer, fetchPhotosHasError, photosAreLoading} from './photosReducer';
+import {albumsReducer, fetchAlbums} from './albumsReducer';
+import {photosReducer, fetchPhotos} from './photosReducer';
 
 export default combineReducers({
-    albumsAreLoading,
-    fetchAlbumsHasError,
+    fetchAlbums,
     albums: albumsReducer,
-    fetchPhotosHasError,
-    photosAreLoading,
+    fetchPhotos,
     photos: photosReducer
 });

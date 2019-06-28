@@ -4,22 +4,30 @@ import './albumsList.css';
 
 export default class AlbumsLists extends PureComponent {
     componentDidMount() {
-        const {albums, albumsAreLoading, loadAlbums} = this.props;
+        const {albums, fetchAlbumsLoading, loadAlbums} = this.props;
 
-        if (Object.keys(albums).length === 0 && !albumsAreLoading) {
+        if (Object.keys(albums).length === 0 && !fetchAlbumsLoading) {
             loadAlbums();
         }
     }
 
-    render() {
-        const {fetchAlbumsHasError, albumsAreLoading, albums} = this.props;
+    renderLoading() {
+        return <p className="albums-wrapper">Albums are loading...</p>
+    }
 
-        if (fetchAlbumsHasError) {
-            return <p className="albums-wrapper">Loading error!</p>
+    renderError() {
+        return <p className="albums-wrapper">Albums loading error!</p>
+    }
+
+    render() {
+        const {fetchAlbumsError, fetchAlbumsLoading, albums} = this.props;
+
+        if (fetchAlbumsError) {
+            return this.renderError();
         }
 
-        if (albumsAreLoading) {
-            return <p className="albums-wrapper">Albums are loading...</p>
+        if (fetchAlbumsLoading) {
+            return this.renderLoading();
         }
 
         return <div className="albums-wrapper">
@@ -34,7 +42,7 @@ export default class AlbumsLists extends PureComponent {
             </Link>
             <ul className="albums">
                 {Object.keys(albums).map(albumId => (
-                    <li className="album" key={albums[albumId].id}>
+                    <li className="album" key={albumId}>
                         <NavLink
                             className="album__link link"
                             activeClassName="active-link"

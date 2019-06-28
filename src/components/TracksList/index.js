@@ -1,13 +1,13 @@
 import React, {PureComponent} from 'react';
 import TracksListItem from '../TracksListItem';
 import './trackList.css';
-import {PLAYER_FIRST, PLAYER_SECOND} from "../../constants";
+import {PlayerName} from "../../constants";
 
 export default class TracksList extends PureComponent {
     render() {
         const {tracks, players} = this.props;
-        const playerFirstCurrentTrackId = players[PLAYER_FIRST].currentTrackId;
-        const playerSecondCurrentTrackId = players[PLAYER_SECOND].currentTrackId;
+        const playerFirstCurrentTrackId = players[PlayerName.FIRST].currentTrackId;
+        const playerSecondCurrentTrackId = players[PlayerName.SECOND].currentTrackId;
 
         return <div className="tracks-list-wrapper">
             <p className="tracks-list-header">

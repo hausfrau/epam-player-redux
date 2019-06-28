@@ -1,13 +1,13 @@
 import React, {PureComponent} from 'react';
 import FavoritesTracksListItem from '../FavoritesTracksListItem';
-import {PLAYER_FIRST, PLAYER_SECOND} from '../../constants';
+import {PlayerName} from '../../constants';
 import './favoritesTracksList.css';
 
 export default class FavoritesTracksList extends PureComponent {
     render() {
         const {tracks, players} = this.props;
-        const playerFirstCurrentTrackId = players[PLAYER_FIRST].currentTrackId;
-        const playerSecondCurrentTrackId = players[PLAYER_SECOND].currentTrackId;
+        const playerFirstCurrentTrackId = players[PlayerName.FIRST].currentTrackId;
+        const playerSecondCurrentTrackId = players[PlayerName.SECOND].currentTrackId;
 
         return <div className="favorites-tracks-wrapper">
             <ul className="favorites-tracks">

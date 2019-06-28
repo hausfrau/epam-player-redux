@@ -37,10 +37,8 @@ const AddTrack = ({add}) => {
     )
 };
 
-const mapStateToProps = state => state;
-
 const mapDispatchToProps = dispatch => ({
     add: track => dispatch(addTrack(track))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddTrack);
+export default connect(null, mapDispatchToProps)(AddTrack);

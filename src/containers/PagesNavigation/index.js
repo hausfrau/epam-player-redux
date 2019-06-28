@@ -6,17 +6,17 @@ import './pagesNavigation.css';
 
 class PagesNavigation extends Component {
     onPlayerButtonClick = () => {
-        const {state, onPlayerButtonClick} = this.props;
+        const {tracks, onPlayerButtonClick} = this.props;
 
-        if (state.tracks.length === 0) {
+        if (tracks.length === 0) {
             onPlayerButtonClick();
         }
     };
 
     onAlbumsButtonClick = () => {
-        const {state, onAlbumsButtonClick} = this.props;
+        const {albums, onAlbumsButtonClick} = this.props;
 
-        if (Object.keys(state.albums).length === 0) {
+        if (Object.keys(albums).length === 0) {
             onAlbumsButtonClick();
         }
     };
@@ -50,7 +50,8 @@ class PagesNavigation extends Component {
 }
 
 const mapStateToProps = state => ({
-    state: state
+    tracks: state.player.tracks,
+    albums: state.photoAlbum.albums
 });
 
 const mapDispatchToProps = dispatch => ({

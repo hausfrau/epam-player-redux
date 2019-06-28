@@ -1,7 +1,5 @@
 import {TracksActions} from '../actions/actionsTypes';
 
-const {ADD_TRACK, TOGGLE_FAVORITE, LOAD_TRACKS} = TracksActions;
-
 const initialState = [
     {
         id: 1,
@@ -26,7 +24,6 @@ const initialState = [
         name: 'Track 4',
         duration: '05.10',
         isFavorite: true
-
     },
     {
         id: 5,
@@ -38,9 +35,9 @@ const initialState = [
 
 export default (state = [], action) => {
     switch (action.type) {
-        case LOAD_TRACKS:
+        case TracksActions.LOAD_TRACKS:
             return initialState;
-        case ADD_TRACK:
+        case TracksActions.ADD_TRACK:
             return [
                 ...state,
                 {
@@ -50,7 +47,7 @@ export default (state = [], action) => {
                     isFavorite: false
                 }
             ];
-        case TOGGLE_FAVORITE:
+        case TracksActions.TOGGLE_FAVORITE:
             return state.map(track => (track.id === action.payload) ?
                 {...track, isFavorite: !track.isFavorite}
                 :

@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import Player from "../../containers/Player";
-import {PLAYER_FIRST, PLAYER_SECOND} from "../../constants";
+import {PlayerName} from "../../constants";
 import Tracks from "../../containers/Tracks";
 import AddTrack from "../../containers/AddTrack";
 import FavoritesTracks from "../../containers/FavoritesTracks";
@@ -25,8 +25,8 @@ export default class extends PureComponent {
                 Back
             </Link>
             <div className="players-wrapper">
-                <Player playerId={PLAYER_FIRST}/>
-                <Player playerId={PLAYER_SECOND}/>
+                <Player playerId={PlayerName.FIRST}/>
+                <Player playerId={PlayerName.SECOND}/>
             </div>
             <div className="tracks-wrapper">
                 <Tracks/>

@@ -19,17 +19,24 @@ class Album extends Component {
         }
     }
 
+    renderLoading() {
+        return <p className="albums-wrapper">Photos are loading...</p>
+    }
+
+    renderError() {
+        return <p className="albums-wrapper">Photos loading error!</p>
+    }
+
     render() {
-        const {state, albums, allPhotos} = this.props;
+        const {fetchPhotosError, fetchPhotosLoading, albums, allPhotos} = this.props;
         const findPhoto = photoId => allPhotos[photoId];
 
-        if (state.fetchPhotosHasError) {
-            return <p className="photos-wrapper">Loading error!</p>
+        if (fetchPhotosError) {
+            return this.renderError();
         }
 
-        if (state.photosAreLoading) {
-            return <p className="photos-wrapper">Photos are loading...</p>
-
+        if (fetchPhotosLoading) {
+            return this.renderLoading();
         }
 
         if (this.albumId && albums[this.albumId] && albums[this.albumId].photos.length !== 0) {
@@ -54,9 +61,8 @@ class Album extends Component {
                             </li>
                         }
 
-                        return <li className="photo" key={photo.id}>
+                        return <li className="photo" key={photoId}>
                             <a className="link"
-                                // className={`link${photo.id === state.selectedPhotoId ? ' active-link' : ''}`}
                                href={photo.url}
                                rel="noreferrer noopener"
                                target="_blank">
@@ -78,10 +84,10 @@ class Album extends Component {
 }
 
 const mapStateToProps = state => ({
-    state: state,
-    albums: state.albums,
-    allPhotos: state.photos,
-    albumsAreLoading: state.albumsAreLoading
+    fetchPhotosError: state.photoAlbum.fetchPhotos.error,
+    fetchPhotosLoading: state.photoAlbum.fetchPhotos.loading,
+    albums: state.photoAlbum.albums,
+    allPhotos: state.photoAlbum.photos,
 });
 
 const mapDispatchToProps = dispatch => ({

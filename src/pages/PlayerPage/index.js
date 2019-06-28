@@ -3,7 +3,7 @@ import {loadTracks} from "../../actions";
 import {connect} from "react-redux";
 
 const mapStateToProps = state => ({
-    tracks: state.tracks
+    tracks: state.player.tracks
 });
 
 const mapDispatchToProps = dispatch => ({

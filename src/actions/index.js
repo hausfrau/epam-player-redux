@@ -1,41 +1,17 @@
-import {TracksActions, AlbumsActions, PhotosActions} from './actionsTypes';
-import {convertFetchedAlbumsToStoredFormat} from '../utils';
+import {TracksActions, FetchAlbumsActions, FetchPhotosActions, AlbumsActions, PhotosActions} from './actionsTypes';
 import axios from 'axios';
 
-const {
-    LOAD_TRACKS,
-    ADD_TRACK,
-    SET_PLAYING_STATUS,
-    SET_PLAYER,
-    TOGGLE_FAVORITE,
-    SET_CURRENT_TRACK
-} = TracksActions;
-
-const {
-    ALBUMS_ARE_LOADING,
-    FETCH_ALBUMS_HAS_ERROR,
-    FETCH_ALBUMS_SUCCESS,
-    LOAD_ALBUMS
-} = AlbumsActions;
-
-const {
-    ADD_PHOTOS_TO_ALBUM,
-    PHOTOS_ARE_LOADING,
-    FETCH_PHOTOS_HAS_ERROR,
-    FETCH_PHOTOS_SUCCESS
-} = PhotosActions;
-
 export const loadTracks = () => ({
-    type: LOAD_TRACKS
+    type: TracksActions.LOAD_TRACKS
 });
 
 export const addTrack = track => ({
-    type: ADD_TRACK,
+    type: TracksActions.ADD_TRACK,
     payload: track
 });
 
 export const setPlayer = (player, currentTrackId, playingStatus) => ({
-    type: SET_PLAYER,
+    type: TracksActions.SET_PLAYER,
     payload: {
         player,
         currentTrackId,
@@ -44,7 +20,7 @@ export const setPlayer = (player, currentTrackId, playingStatus) => ({
 });
 
 export const setTrack = (player, currentTrackId) => ({
-    type: SET_CURRENT_TRACK,
+    type: TracksActions.SET_CURRENT_TRACK,
     payload: {
         player,
         currentTrackId
@@ -52,7 +28,7 @@ export const setTrack = (player, currentTrackId) => ({
 });
 
 export const setPlayingStatus = (player, playingStatus) => ({
-    type: SET_PLAYING_STATUS,
+    type: TracksActions.SET_PLAYING_STATUS,
     payload: {
         player,
         playingStatus
@@ -60,108 +36,102 @@ export const setPlayingStatus = (player, playingStatus) => ({
 });
 
 export const toggleFavorite = favoriteTrackId => ({
-    type: TOGGLE_FAVORITE,
+    type: TracksActions.TOGGLE_FAVORITE,
     payload: favoriteTrackId
 });
 
-export const albumsAreLoading = bool => ({
-    type: ALBUMS_ARE_LOADING,
-    payload: bool
+export const fetchAlbumsStart = () => ({
+    type: FetchAlbumsActions.START,
+    payload: {
+        error: null,
+        loading: true
+    }
 });
 
-export const fetchAlbumsHasError = bool => ({
-    type: FETCH_ALBUMS_HAS_ERROR,
-    payload: bool
+export const fetchAlbumsSuccess = () => ({
+    type: FetchAlbumsActions.SUCCESS,
+    payload: {
+        error: null,
+        loading: false
+    }
 });
 
-export const fetchAlbumsSuccess = albums => ({
-    type: FETCH_ALBUMS_SUCCESS,
+export const storeAlbums = albums => ({
+    type: AlbumsActions.ALBUMS_ARE_STORING,
     payload: albums
+});
+
+export const fetchAlbumsError = error => ({
+    type: FetchAlbumsActions.START,
+    payload: {
+        error: error,
+        loading: false
+    }
 });
 
 export const loadAlbums = () =>
     dispatch => {
-        // const convertFetchedAlbumsToStoredFormat = json => {
-        //     const fetchedAlbums = json;
-        //     const storedAlbums = {};
-        //     fetchedAlbums.forEach(album => {
-        //         const {id, title} = album;
-        //         storedAlbums[id] = {
-        //             id: id,
-        //             title: title,
-        //             photos: []
-        //         };
-        //     });
-        //     return storedAlbums;
-        // };
-
-        dispatch(albumsAreLoading(true));
+        dispatch(fetchAlbumsStart());
 
         return axios.get('https://jsonplaceholder.typicode.com/albums')
             .then(response => {
-                dispatch(albumsAreLoading(false));
-                dispatch(fetchAlbumsSuccess(convertFetchedAlbumsToStoredFormat(response.data)));
+                dispatch(storeAlbums(response.data));
+                dispatch(fetchAlbumsSuccess());
             })
             .catch((error) => {
                 console.error(error);
-                dispatch(fetchAlbumsHasError(true))
+                dispatch(fetchAlbumsError(error))
             });
     };
 
-export const addPhotosToAlbum = (albumId, photos) => ({
-    type: ADD_PHOTOS_TO_ALBUM,
-    payload: {albumId, photos}
+export const addPhotosToAlbum = (albumId, fetchedPhotos) => ({
+    type: PhotosActions.ADD_PHOTOS_TO_ALBUM,
+    payload: {albumId, fetchedPhotos}
 });
 
-export const photosAreLoading = bool => ({
-    type: PHOTOS_ARE_LOADING,
-    payload: bool
+export const fetchPhotosStart = () => ({
+    type: FetchPhotosActions.START,
+    payload: {
+        error: null,
+        loading: true
+    }
 });
 
-export const fetchPhotosHasError = bool => ({
-    type: FETCH_PHOTOS_HAS_ERROR,
-    payload: bool
+export const fetchPhotosSuccess = () => ({
+    type: FetchPhotosActions.SUCCESS,
+    payload: {
+        error: null,
+        loading: false
+    }
 });
 
-export const fetchPhotosSuccess = photos => ({
-    type: FETCH_PHOTOS_SUCCESS,
-    payload: photos
+export const storePhotos = fetchedPhotos => ({
+    type: PhotosActions.PHOTOS_ARE_STORING,
+    payload: fetchedPhotos
+});
+
+export const fetchPhotosError = error => ({
+    type: FetchPhotosActions.START,
+    payload: {
+        error: error,
+        loading: false
+    }
 });
 
 export const loadAlbumPhotos = albumId =>
     dispatch => {
-        let photos = new Set();
-
-        const convertFetchedPhotosToStoredFormat = json => {
-            const fetchedPhotos = json;
-            const storedPhotos = {};
-            fetchedPhotos.forEach(photo => {
-                const {id = 0, title = '', url = ''} = photo;
-
-                storedPhotos[id] = {
-                    albumId: Number(albumId),
-                    id,
-                    title,
-                    url
-                };
-
-                photos.add(id);
-            });
-
-            dispatch(addPhotosToAlbum(albumId, Array.from(photos)));
-
-            return storedPhotos;
-        };
-
-        dispatch(photosAreLoading(true));
+        dispatch(fetchPhotosStart());
 
         return axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`)
             .then(response => {
-                dispatch(photosAreLoading(false));
-                dispatch(fetchPhotosSuccess(convertFetchedPhotosToStoredFormat(response.data)));
+                const fetchedPhotos = response.data;
+
+                dispatch(storePhotos(fetchedPhotos));
+                dispatch(addPhotosToAlbum(albumId, fetchedPhotos));
+                dispatch(fetchPhotosSuccess());
             })
             .catch(error => {
                 console.error(error);
-                dispatch(fetchPhotosHasError(true))
+                dispatch(fetchPhotosError(error))
             });
     };

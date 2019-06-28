@@ -1,7 +1,7 @@
 import React from 'react';
 import connect from "react-redux/es/connect/connect";
 import {setPlayer, setPlayingStatus, setTrack} from "../../actions";
-import {PLAYING_STATUS_PLAYING, PLAYING_STATUS_PAUSED, PLAYING_STATUS_STOPPED} from '../../constants';
+import {PlayingStatus} from '../../constants';
 import './player.css';
 
 const CurrentTrack = ({playerId, players, tracks, setPlayingStatus, setTrack}) => {
@@ -36,9 +36,10 @@ const CurrentTrack = ({playerId, players, tracks, setPlayingStatus, setTrack}) =
         return currentTrackIndex;
     };
 
-    const onPlayButtonClick = () => setPlayingStatus(playerId, PLAYING_STATUS_PLAYING);
-    const onPauseButtonClick = () => setPlayingStatus(playerId, PLAYING_STATUS_PAUSED);
-    const onStopButtonClick = () => setPlayingStatus(playerId, PLAYING_STATUS_STOPPED);
+    const onPlayButtonClick = () => setPlayingStatus(playerId, PlayingStatus.PLAYING);
+    const onPauseButtonClick = () => setPlayingStatus(playerId, PlayingStatus.PAUSED);
+    const onStopButtonClick = () => setPlayingStatus(playerId, PlayingStatus.STOPPED);
+
     const onPrevButtonClick = () => (currentTrackId ?
         setTrack(playerId, tracks[getPreviousTrackId()].id)
         :
@@ -57,7 +58,7 @@ const CurrentTrack = ({playerId, players, tracks, setPlayingStatus, setTrack}) =
                      alt="previous track"/>
             </button>
             <button
-                className={`button-play-player button--play button--control${playingStatus === PLAYING_STATUS_PLAYING && currentTrackId !== null ?
+                className={`button-play-player button--play button--control${playingStatus === PlayingStatus.PLAYING && currentTrackId !== null ?
                     " active"
                     :
                     ""
@@ -69,7 +70,7 @@ const CurrentTrack = ({playerId, players, tracks, setPlayingStatus, setTrack}) =
                      alt="play"/>
             </button>
             <button
-                className={`button--pause button--control${playingStatus === PLAYING_STATUS_PAUSED && currentTrackId !== null ?
+                className={`button--pause button--control${playingStatus === PlayingStatus.PAUSED && currentTrackId !== null ?
                     " active"
                     :
                     ""
@@ -81,7 +82,7 @@ const CurrentTrack = ({playerId, players, tracks, setPlayingStatus, setTrack}) =
                      alt="pause"/>
             </button>
             <button
-                className={`button--stop button--control${playingStatus === PLAYING_STATUS_STOPPED && currentTrackId !== null ?
+                className={`button--stop button--control${playingStatus === PlayingStatus.STOPPED && currentTrackId !== null ?
                     " active"
                     :
                     ""
@@ -119,8 +120,8 @@ const CurrentTrack = ({playerId, players, tracks, setPlayingStatus, setTrack}) =
 };
 
 const mapStateToProps = state => ({
-        players: state.players,
-        tracks: state.tracks
+    players: state.player.players,
+    tracks: state.player.tracks
 });
 
 export default connect(
